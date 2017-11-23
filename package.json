@@ -1,0 +1,22 @@
+{
+  "name": "aframe",
+  "productName": "A-Frame",
+  "description": "Atom A-Frame Support",
+  "main": "./src/main",
+  "version": "0.1.0",
+  "license": "MIT",
+  "keywords": [
+    "aframe",
+    "vr"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkungla/atom-aframe.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mkungla/atom-aframe/issues"
+  },
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  }
+}
