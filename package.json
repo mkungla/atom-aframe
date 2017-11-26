@@ -31,6 +31,9 @@
     "eslint-plugin-standard": "^3.0.1"
   },
   "eslintConfig": {
-    "extends": "standard"
+    "extends": "standard",
+    "env": {
+      "atomtest": true
+    }
   }
 }
