@@ -3,7 +3,7 @@
   "productName": "A-Frame",
   "description": "Atom A-Frame Support",
   "main": "./src/main",
-  "version": "0.1.1",
+  "version": "0.0.0",
   "license": "MIT",
   "keywords": [
     "aframe",
@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mkungla/atom-aframe.git"
+    "url": "git@github.com:mkungla/atom-aframe.git"
   },
   "bugs": {
     "url": "https://github.com/mkungla/atom-aframe/issues"
