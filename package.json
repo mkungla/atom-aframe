@@ -1,5 +1,5 @@
 {
-  "name": "aframe",
+  "name": "atom-aframe",
   "productName": "A-Frame",
   "description": "Atom A-Frame Support",
   "main": "./lib/main",
