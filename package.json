@@ -11,10 +11,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mkungla/aframe-atom-particles.git"
+    "url": "https://github.com/mkungla/atom-aframe.git"
   },
   "bugs": {
-    "url": "https://github.com/mkungla/aframe-atom-particles/issues"
+    "url": "https://github.com/mkungla/atom-aframe/issues"
   },
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
