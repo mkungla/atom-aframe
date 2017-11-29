@@ -5,7 +5,7 @@
 version: 2
 jobs:
   lint:
-    working_directory: ~/atom-aframe
+    working_directory: ~/aframe-atom-particles
     docker:
       - image: circleci/node:8.9.1
     steps:
