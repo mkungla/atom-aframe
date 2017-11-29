@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:mkungla/atom-aframe.git"
+    "url": "https://github.com/mkungla/atom-aframe.git"
   },
   "bugs": {
     "url": "https://github.com/mkungla/atom-aframe/issues"
