@@ -2,7 +2,7 @@
   "name": "atom-aframe",
   "productName": "A-Frame",
   "description": "Atom A-Frame Support",
-  "main": "./lib/main",
+  "main": "./src/index",
   "version": "0.1.1",
   "license": "MIT",
   "keywords": [
@@ -22,10 +22,18 @@
   "scripts": {
     "lint": "eslint ."
   },
+  "atomTestRunner": "./tests/runner",
   "consumedServices": {
     "status-bar": {
       "versions": {
         "^1.0.0": "aframeStatusBar"
+      }
+    }
+  },
+  "providedServices": {
+    "autocomplete.provider": {
+      "versions": {
+        "2.0.0": "aframeAutocompleteProvider"
       }
     }
   },
