@@ -1,8 +1,8 @@
 {
-  "name": "aframe",
+  "name": "atom-aframe",
   "productName": "A-Frame",
   "description": "Atom A-Frame Support",
-  "main": "./src/main",
+  "main": "./lib/main",
   "version": "0.1.0",
   "license": "MIT",
   "keywords": [
@@ -22,7 +22,15 @@
   "scripts": {
     "lint": "eslint ."
   },
+  "consumedServices": {
+    "status-bar": {
+      "versions": {
+        "^1.0.0": "aframeStatusBar"
+      }
+    }
+  },
   "devDependencies": {
+    "aframe": "^0.7.1",
     "eslint": "^4.11.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.8.0",
@@ -33,7 +41,15 @@
   "eslintConfig": {
     "extends": "standard",
     "env": {
-      "atomtest": true
+      "atomtest": true,
+      "jasmine": true,
+      "mocha": true
+    },
+    "globals": {
+      "atom": true
     }
+  },
+  "dependencies": {
+    "semver": "^5.4.1"
   }
 }
