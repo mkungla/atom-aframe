@@ -10,6 +10,6 @@ import {CommandSet} from './abstract'
 export class JSCommands extends CommandSet {
   constructor () {
     super()
-    this.load = true
+    this.t = 'atom-text-editor[data-grammar~="javascript"]'
   }
 }

@@ -9,9 +9,22 @@ import {JSCommands} from './js-cmd'
  */
 class Commands {
   constructor () {
-    this.workspace = new WorkspaceCommands()
-    this.html = new HTMLCommands()
-    this.js = new JSCommands()
+    this.list = []
+    this.add(new WorkspaceCommands())
+    this.add(new HTMLCommands())
+    this.add(new JSCommands())
+  }
+
+  /**
+   * Add command to list
+   *
+   * @param {CommandSet} commands
+   */
+  add (commands) {
+    for (const cmd of commands) {
+      if (!cmd.isValid()) { continue }
+      this.list.push(atom.commands.add(cmd.getTarget(), cmd.attachable()))
+    }
   }
 }
 

@@ -69,17 +69,8 @@ export default {
    * Reqister all commands
    */
   setupCommands () {
-    for (const cmd of commands.workspace) {
-      if (!cmd.isValid()) { continue }
-      this.subscriptions.add(atom.commands.add('atom-workspace', cmd.attachable()))
-    }
-    for (const cmd of commands.html) {
-      if (!cmd.isValid()) { continue }
-      this.subscriptions.add(atom.commands.add('atom-text-editor[data-grammar~="html"]', cmd.attachable()))
-    }
-    for (const cmd of commands.js) {
-      if (!cmd.isValid()) { continue }
-      this.subscriptions.add(atom.commands.add('atom-text-editor[data-grammar~="javascript"]', cmd.attachable()))
+    for (const cmd of commands.list) {
+      this.subscriptions.add(cmd)
     }
   }
 }

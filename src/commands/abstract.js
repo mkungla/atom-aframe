@@ -25,6 +25,15 @@ export class Command {
       [this.cmd]: this.runc
     }
   }
+
+  /**
+   * Get command target
+   *
+   * @return {String} target
+   */
+  getTarget () {
+    return this.t ? this.t : 'atom-workspace'
+  }
 }
 /**
  * Apstract for commands
