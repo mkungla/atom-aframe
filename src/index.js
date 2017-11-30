@@ -4,12 +4,17 @@ import {CompositeDisposable} from 'atom'
 import semver from 'semver'
 import * as cnf from './config'
 import commands from './commands'
+import PkgState from './pkg-state'
 
 export default {
-  // CompositeDisposable
-  subscriptions: null,
   // is package valid and can be loaded
   valid: false,
+  // CompositeDisposable
+  subscriptions: null,
+  // Statusbar
+  statusbar: null,
+  // PackageState
+  pkgState: null,
 
   /**
    * Called before atom-aframe package is activated
@@ -17,9 +22,11 @@ export default {
    * @param  {[Object]} state data from the last time the window was serialized
    */
   initialize (state) {
+    this.pkgState = new PkgState(state)
     this.subscriptions = new CompositeDisposable()
     this.verifyConfig()
     this.verifyAtom()
+    this.setupCommands()
   },
 
   /**
@@ -27,9 +34,8 @@ export default {
    *
    * @param  {Object} state data from the last time the window was serialized
    */
-  activate (state) {
+  activate () {
     if (!this.valid) { return }
-    this.setupCommands()
   },
 
   /**
@@ -39,7 +45,7 @@ export default {
    * @return {String} JSON to represent the state of atom-aframe
    */
   serialize () {
-    return '{"serialized":  true }'
+    return JSON.stringify(this.pkgState)
   },
 
   /**
@@ -56,8 +62,10 @@ export default {
    * @return {[type]} [description]
    */
   dispose () {
-    // Dispose all subscriptions
-    this.subscriptions.dispose()
+    if (this.subscriptions) {
+      this.subscriptions.dispose()
+    }
+    this.statusbar = null
   },
 
   /**
@@ -105,13 +113,15 @@ export default {
    * Load autocomplete provider
    */
   provideAutocomplete () {
+    console.info('main.provideAutocomplete')
     console.warn('should provide autocomplete')
   },
 
   /**
-   * Setup statusbar
+   * Attac statusbar service
    */
-  consumeStatusBar () {
-    console.warn('should set status bar')
+  consumeStatusBar (sb) {
+    console.info('main.consumeStatusBar')
+    this.statusbar = sb
   }
 }
