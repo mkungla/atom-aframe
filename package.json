@@ -46,17 +46,20 @@
     "semver": "^5.4.1"
   },
   "atomTestRunner": "./tests/runner",
+  "activationHooks": [
+    "core:loaded-shell-environment"
+  ],
   "consumedServices": {
     "status-bar": {
       "versions": {
-        "^1.0.0": "aframeStatusBar"
+        "^1.0.0": "consumeStatusBar"
       }
     }
   },
   "providedServices": {
     "autocomplete.provider": {
       "versions": {
-        "2.0.0": "aframeAutocompleteProvider"
+        "2.0.0": "provideAutocomplete"
       }
     }
   },

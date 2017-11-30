@@ -99,5 +99,19 @@ export default {
       }
     }
     this.valid = validVersion
+  },
+
+  /**
+   * Load autocomplete provider
+   */
+  provideAutocomplete () {
+    console.warn('should provide autocomplete')
+  },
+
+  /**
+   * Setup statusbar
+   */
+  consumeStatusBar () {
+    console.warn('should set status bar')
   }
 }
