@@ -16,18 +16,20 @@ export class Command {
   }
 
   /**
-   * Get Command to attach to atom
+   * Get Command to ready to be added to command registry
    *
-   * @return {Object} command
+   * @return {Object} {commandName, listener}
    */
-  attachable () {
-    return {
-      [this.cmd]: this.runc
-    }
+  getInstance () {
+    return { [this.cmd]: this.runc }
   }
 
   /**
-   * Get command target
+   * Get command target A String containing a CSS selector or a DOM element.
+   * If you pass a selector, the command will be globally associated with
+   * all matching elements. The , combinator is not currently supported.
+   * If you pass a DOM element, the command will be associated
+   * with just that element.
    *
    * @return {String} target
    */

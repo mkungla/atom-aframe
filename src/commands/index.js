@@ -23,7 +23,7 @@ class Commands {
   add (commands) {
     for (const cmd of commands) {
       if (!cmd.isValid()) { continue }
-      this.list.push(atom.commands.add(cmd.getTarget(), cmd.attachable()))
+      this.list.push(atom.commands.add(cmd.getTarget(), cmd.getInstance()))
     }
   }
 }
