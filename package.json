@@ -22,21 +22,6 @@
   "scripts": {
     "lint": "eslint ."
   },
-  "atomTestRunner": "./tests/runner",
-  "consumedServices": {
-    "status-bar": {
-      "versions": {
-        "^1.0.0": "aframeStatusBar"
-      }
-    }
-  },
-  "providedServices": {
-    "autocomplete.provider": {
-      "versions": {
-        "2.0.0": "aframeAutocompleteProvider"
-      }
-    }
-  },
   "devDependencies": {
     "aframe": "^0.7.1",
     "eslint": "^4.11.0",
@@ -59,5 +44,36 @@
   },
   "dependencies": {
     "semver": "^5.4.1"
+  },
+  "atomTestRunner": "./tests/runner",
+  "consumedServices": {
+    "status-bar": {
+      "versions": {
+        "^1.0.0": "aframeStatusBar"
+      }
+    }
+  },
+  "providedServices": {
+    "autocomplete.provider": {
+      "versions": {
+        "2.0.0": "aframeAutocompleteProvider"
+      }
+    }
+  },
+  "configSchema": {
+    "global": {
+      "type": "object",
+      "order": 1,
+      "title": "Global Atom A-Frame package configuration",
+      "properties": {
+        "notifOnActivationFailure": {
+          "title": "Warn when this atom package is unable to activate",
+          "description": "Show warning this atom package can not be activate (e.g to old Atom)",
+          "type": "boolean",
+          "default": true,
+          "order": 1
+        }
+      }
+    }
   }
 }

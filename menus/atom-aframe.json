@@ -1,1 +1,22 @@
-{}
+{
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "A-Frame",
+          "submenu": [
+            {
+              "label": "Documentation",
+              "command": "atom-aframe:documentation"
+            },
+            {
+              "label": "Settings",
+              "command": "atom-aframe:settings"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
