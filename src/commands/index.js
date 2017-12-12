@@ -1,31 +1,38 @@
 'use babel'
 
-import {WorkspaceCommands} from './workspace-cmd'
-import {HTMLCommands} from './html-cmd'
-import {JSCommands} from './js-cmd'
+import {CommandCollectionWorkspace} from './command-collection-workspace'
+import {CommandCollectionHTML} from './command-collection-html'
+import {CommandCollectionJS} from './command-collection-js'
 
 /**
  * Atom A-Frame commands
  */
-class Commands {
+export default class Commands {
   constructor () {
     this.list = []
-    this.add(new WorkspaceCommands())
-    this.add(new HTMLCommands())
-    this.add(new JSCommands())
+    this.add(new CommandCollectionWorkspace())
+    this.add(new CommandCollectionHTML())
+    this.add(new CommandCollectionJS())
   }
 
   /**
-   * Add command to list
+   * Add command collection to commands
    *
-   * @param {CommandSet} commands
+   * @param {CommandCollection} const
    */
-  add (commands) {
-    for (const cmd of commands) {
+  add (cmdSet) {
+    for (const cmd of cmdSet) {
       if (!cmd.isValid()) { continue }
-      this.list.push(atom.commands.add(cmd.getTarget(), cmd.getInstance()))
+      this.list.push(atom.commands.add(cmdSet.getTarget(), cmd.getAction()))
     }
   }
-}
 
-export default new Commands()
+  /**
+   * Get all commands
+   *
+   * @return {[Command]} array of Commands
+   */
+  all () {
+    return this.list
+  }
+}

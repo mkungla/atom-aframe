@@ -1,5 +1,10 @@
 'use babel'
 
+/**
+ * Command instance
+ *
+ * @type {[type]}
+ */
 export class Command {
   constructor (cmd, func) {
     this.cmd = cmd
@@ -16,34 +21,44 @@ export class Command {
   }
 
   /**
-   * Get Command to ready to be added to command registry
+   * Get Command action to be added to the command registry
    *
    * @return {Object} {commandName, listener}
    */
-  getInstance () {
+  getAction () {
     return { [this.cmd]: this.runc }
+  }
+}
+
+/**
+ * Command Collection
+ */
+export class CommandCollection {
+  constructor () {
+    this.commands = []
   }
 
   /**
    * Get command target A String containing a CSS selector or a DOM element.
    * If you pass a selector, the command will be globally associated with
    * all matching elements. The , combinator is not currently supported.
-   * If you pass a DOM element, the command will be associated
-   * with just that element.
+   * If you pass a DOM element the command will be associated with just that element.
    *
-   * @return {String} target
+   * @param {string} t target
+   */
+  setTarget (t) {
+    this.target = t
+  }
+
+  /**
+   * getTarget
+   *
+   * @return {String} targetstring
    */
   getTarget () {
-    return this.t ? this.t : 'atom-workspace'
+    return this.target ? this.target : 'atom-workspace'
   }
-}
-/**
- * Apstract for commands
- */
-export class CommandSet {
-  constructor () {
-    this.commands = []
-  }
+
   /**
    * iterator for commands
    */
