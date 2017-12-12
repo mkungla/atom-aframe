@@ -122,11 +122,17 @@
             "type": "string"
           }
         },
-        "aframeDocsBaseURI": {
+        "aframeDocsBaseURL": {
           "title": "Documentation base url",
           "description": "Documentation base url used to generate links. You can set that also to localhost when working on A-Frame documentation",
           "type": "string",
           "default": "https://aframe.io/docs"
+        },
+        "npmAPIURI": {
+          "title": "NPM API uri for A-Frame",
+          "description": "NPM API identifier from where atom-aframe fetches versions",
+          "type": "string",
+          "default": "https://registry.npmjs.org/aframe"
         }
       }
     }

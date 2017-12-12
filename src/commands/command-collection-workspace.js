@@ -36,7 +36,7 @@ export class CommandCollectionWorkspace extends CommandCollection {
    */
   documentation () {
     return new Command('atom-aframe:documentation', () => {
-      let url = atom.config.get('atom-aframe.devel.aframeDocsBaseURI') || 'https://aframe.io/docs'
+      let url = atom.config.get('atom-aframe.devel.aframeDocsBaseURL') || 'https://aframe.io/docs'
       shell.openExternal(`${url}/master/introduction/`)
     })
   }
