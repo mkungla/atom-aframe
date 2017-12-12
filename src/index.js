@@ -1,127 +1,82 @@
 'use babel'
 
-import {CompositeDisposable} from 'atom'
-import semver from 'semver'
-import * as cnf from './config'
-import commands from './commands'
-import PkgState from './pkg-state'
+import {CompositeDisposable, Emitter} from 'atom'
+
+import Services from './services'
+import Validator from './validator'
+import Session from './session'
+import Dispatcher from './dispatcher'
+import Commands from './commands'
 
 export default {
-  // is package valid and can be loaded
   valid: false,
-  // CompositeDisposable
+  statusBar: null,
   subscriptions: null,
-  // Statusbar
-  statusbar: null,
-  // PackageState
-  pkgState: null,
-
+  emitter: null,
+  session: null,
   /**
-   * Called before atom-aframe package is activated
+   * Called before atom-aframe package is activated.
+   * This gives you a chance to handle the serialized package state before
+   * the package's derserializers and view providers are used.
    *
-   * @param  {[Object]} state data from the last time the window was serialized
+   * @param {Object} state data from the last time the window was serialized
    */
   initialize (state) {
-    this.pkgState = new PkgState(state)
-    this.subscriptions = new CompositeDisposable()
-    this.verifyConfig()
-    this.verifyAtom()
-    this.setupCommands()
+    // Initialize atom services
+    new Services().bind(this)
+    // Set up validator
+    new Validator().bind(this)
+    this.session = new Session(state)
+    this.validate()
   },
 
   /**
    * Called when atom-aframe package is activated
-   *
-   * @param  {Object} state data from the last time the window was serialized
    */
   activate () {
-    if (!this.valid) { return }
+    if (!this.isValid()) { return }
+    this.subscriptions = new CompositeDisposable()
+    this.emitter = new Emitter()
+
+    let dispatcher = new Dispatcher()
+    dispatcher.bind(this)
+    this.subscriptions.add(...dispatcher.subscribe(this))
+
+    let commands = new Commands()
+    this.subscriptions.add(...commands.all())
   },
 
   /**
-   * Called when the window is shutting down so we can restore atom-aframe
-   * to where the user left off.
+   * Called when the window is shutting down
+   * so we can restore atom-aframe to where the user left off.
    *
-   * @return {String} JSON to represent the state of atom-aframe
+   * @return {Session} state of atom-aframe
    */
   serialize () {
-    return JSON.stringify(this.pkgState)
+    return this.session
   },
 
   /**
    * Called when the window is shutting down so release external resources
-   * like watching project packag.json for A-Frame version
-   */
-  deactivate () {
-    this.dispose()
-  },
-
-  /**
-   * Dispose whole package and it's subscriptions
-   *
-   * @return {[type]} [description]
+   * e.g stop watching project package.json for A-Frame version
    */
   dispose () {
     if (this.subscriptions) {
       this.subscriptions.dispose()
+      this.subscriptions = null
     }
-    this.statusbar = null
-  },
-
-  /**
-   * Reqister all commands
-   */
-  setupCommands () {
-    for (const cmd of commands.list) {
-      this.subscriptions.add(cmd)
+    if (this.emitter) {
+      this.emitter.dispose()
+      this.emitter = null
     }
+    this.statusBar = null
+    this.valid = false
   },
 
   /**
-   * Verify Configuration
+   * alias dispose
    */
-  verifyConfig () {
-    // If AFRAME_DEPREACTED_CONFIG is set then handle these entries
-    if (cnf.AFRAME_DEPREACTED_CONFIG.length > 0) {
-      for (let c of cnf.AFRAME_DEPREACTED_CONFIG) {
-        atom.config.unset(`atom-aframe.${c}`)
-      }
-    }
-  },
-
-  /**
-   * Can package be activated for that Atom version
-   */
-  verifyAtom () {
-    const validVersion = semver.gte(atom.appVersion, cnf.AFRAME_ATOM_MINVER)
-    if (!validVersion && atom.config.get('atom-aframe.global.notifOnActivationFailure')) {
-      const notification = atom.notifications.addWarning('**Package atom-aframe will not load**', {
-        dismissable: true,
-        icon: 'flame',
-        description: 'Package **atom-aframe** requires Atom `v' + cnf.AFRAME_ATOM_MINVER + '` but you are running `v' + atom.appVersion + '`.'
-      })
-      if (this.subscriptions) {
-        this.subscriptions.add({dispose: () => {
-          notification.dismiss()
-        }})
-      }
-    }
-    this.valid = validVersion
-  },
-
-  /**
-   * Load autocomplete provider
-   */
-  provideAutocomplete () {
-    console.info('main.provideAutocomplete')
-    console.warn('should provide autocomplete')
-  },
-
-  /**
-   * Attac statusbar service
-   */
-  consumeStatusBar (sb) {
-    console.info('main.consumeStatusBar')
-    this.statusbar = sb
+  deactivate () {
+    this.dispose()
   }
 }
