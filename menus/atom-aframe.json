@@ -8,11 +8,15 @@
           "submenu": [
             {
               "label": "Documentation",
-              "command": "atom-aframe:documentation"
+              "command": "atom-aframe:web-documentation"
+            },
+            {
+              "label": "Website",
+              "command": "atom-aframe:web-aframe-site"
             },
             {
               "label": "Settings",
-              "command": "atom-aframe:settings"
+              "command": "atom-aframe:open-settings"
             }
           ]
         }

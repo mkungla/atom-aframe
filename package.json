@@ -128,6 +128,12 @@
           "type": "string",
           "default": "https://aframe.io/docs"
         },
+        "aframeWebsite": {
+          "title": "A-Frame website",
+          "description": "You can set that also to localhost when working on A-Frame site",
+          "type": "string",
+          "default": "https://aframe.io"
+        },
         "npmAPIURI": {
           "title": "NPM API uri for A-Frame",
           "description": "NPM API identifier from where atom-aframe fetches versions",
