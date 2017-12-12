@@ -23,7 +23,6 @@
     "lint": "eslint ."
   },
   "devDependencies": {
-    "aframe": "^0.7.1",
     "eslint": "^4.11.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.8.0",
@@ -64,17 +63,70 @@
     }
   },
   "configSchema": {
-    "global": {
+    "project": {
       "type": "object",
       "order": 1,
-      "title": "Global Atom A-Frame package configuration",
+      "title": "A-Frame project configuration",
+      "properties": {
+        "versionNotify": {
+          "title": "Notify for newer version of A-Frame",
+          "description": "Show notification when there is newer version of A-Frame available for update.",
+          "type": "boolean",
+          "default": false
+        },
+        "versionWarning": {
+          "title": "Warn if project uses EOL version of A-Frame",
+          "description": "Show warning if project depends on End-of-life A-Frame version",
+          "type": "boolean",
+          "default": true
+        },
+        "ignorePackageJson": {
+          "title": "Ignore package.json",
+          "description": "Ignore A-Frame dependency in projects package.json and use defaults instead",
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "package": {
+      "type": "object",
+      "order": 2,
+      "title": "Atom A-Frame package configuration",
       "properties": {
         "notifOnActivationFailure": {
           "title": "Warn when this atom package is unable to activate",
-          "description": "Show warning this atom package can not be activate (e.g to old Atom)",
+          "description": "Show warning when this atom package can not be activate (e.g to old Atom)",
           "type": "boolean",
           "default": true,
           "order": 1
+        }
+      }
+    },
+    "devel": {
+      "type": "object",
+      "order": 3,
+      "title": "Development only! Changing these options may break this package.",
+      "properties": {
+        "atomMinVer": {
+          "title": "Minimum Atom version",
+          "type": "string",
+          "default": "1.14.0"
+        },
+        "deprecatedConf": {
+          "title": "Deprecated configuration options",
+          "type": "array",
+          "default": [
+            "aframeVersion"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "aframeDocsBaseURI": {
+          "title": "Documentation base url",
+          "description": "Documentation base url used to generate links. You can set that also to localhost when working on A-Frame documentation",
+          "type": "string",
+          "default": "https://aframe.io/docs"
         }
       }
     }
