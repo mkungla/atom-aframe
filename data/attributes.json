@@ -1,0 +1,304 @@
+{
+  "align": {
+    "mapping": "text.align"
+  },
+  "alpha-test": {
+    "mapping": "text.alphaTest"
+  },
+  "ambient-occlusion-map": {
+    "mapping": "material.ambientOcclusionMap"
+  },
+  "ambient-occlusion-map-intensity": {
+    "mapping": "material.ambientOcclusionMapIntensity"
+  },
+  "ambient-occlusion-texture-offset": {
+    "mapping": "material.ambientOcclusionTextureOffset"
+  },
+  "ambient-occlusion-texture-repeat": {
+    "mapping": "material.ambientOcclusionTextureRepeat"
+  },
+  "anchor": {
+    "mapping": "text.anchor"
+  },
+  "angle": {
+    "mapping": "light.angle"
+  },
+  "arc": {
+    "mapping": "geometry.arc"
+  },
+  "attribute": {},
+  "autoplay": {
+    "mapping": "sound.autoplay"
+  },
+  "baseline": {
+    "mapping": "text.baseline"
+  },
+  "begin": {},
+  "color": {
+    "mapping": "material.color"
+  },
+  "decay": {
+    "mapping": "light.decay"
+  },
+  "delay": {},
+  "depth": {
+    "mapping": "geometry.depth"
+  },
+  "detail": {
+    "mapping": "geometry.detail"
+  },
+  "direction": {},
+  "distance": {
+    "mapping": "light.distance"
+  },
+  "displacement-bias": {
+    "mapping": "material.displacementBias"
+  },
+  "displacement-map": {
+    "mapping": "material.displacementMap"
+  },
+  "displacement-scale": {
+    "mapping": "material.displacementScale"
+  },
+  "displacement-texture-offset": {
+    "mapping": "material.displacementTextureOffset"
+  },
+  "displacement-texture-repeat": {
+    "mapping": "material.displacementTextureRepeat"
+  },
+  "dur": {},
+  "easing": {},
+  "end": {},
+  "env-map": {
+    "mapping": "material.envMap"
+  },
+  "far": {
+    "mapping": "camera.far"
+  },
+  "fill": {},
+  "fog": {
+    "mapping": "material.fog"
+  },
+  "font": {
+    "mapping": "text.font"
+  },
+  "font-image": {
+    "mapping": "text.fontImage"
+  },
+  "fov": {
+    "mapping": "camera.fov"
+  },
+  "from": {},
+  "fuse": {
+    "mapping": "cursor.fuse"
+  },
+  "fuse-timeout": {
+    "mapping": "cursor.fuseTimeout"
+  },
+  "ground-color": {
+    "mapping": "light.groundColor"
+  },
+  "height": {
+    "mapping": "geometry.height"
+  },
+  "intensity": {
+    "mapping": "light.intensity"
+  },
+  "interval": {
+    "mapping": "raycaster.interval"
+  },
+  "letter-spacing": {
+    "mapping": "text.letterSpacing"
+  },
+  "line-height": {
+    "mapping": "text.lineHeight"
+  },
+  "look-controls-enabled": {
+    "type": "flag",
+    "mapping": "look-controls.enabled"
+  },
+  "loop": {
+    "mapping": "sound.loop"
+  },
+  "max-distance": {
+    "mapping": "cursor.maxDistance"
+  },
+  "metalness": {
+    "mapping": "material.metalness"
+  },
+  "mtl": {
+    "mapping": "obj-model.mtl"
+  },
+  "near": {
+    "mapping": "camera.near"
+  },
+  "normal-map": {
+    "mapping": "material.normalMap"
+  },
+  "normal-scale": {
+    "mapping": "material.normalScale"
+  },
+  "normal-texture-offset": {
+    "mapping": "material.normalTextureOffset"
+  },
+  "normal-texture-repeat": {
+    "mapping": "material.normalTextureRepeat"
+  },
+  "objects": {
+    "mapping": "raycaster.objects"
+  },
+  "on": {
+    "mapping": "sound.on"
+  },
+  "opacity": {
+    "mapping": "material.opacity"
+  },
+  "open-ended": {
+    "mapping": "geometry.openEnded"
+  },
+  "p": {
+    "mapping": "geometry.p"
+  },
+  "penumbra": {
+    "mapping": "light.penumbra"
+  },
+  "phi-lenght": {
+    "mapping": "geometry.phiLength"
+  },
+  "phi-start": {
+    "mapping": "geometry.phiStart"
+  },
+  "q": {
+    "mapping": "geometry.q"
+  },
+  "radius": {
+    "mapping": "geometry.radius"
+  },
+  "radius-bottom":{
+    "mapping": "geometry.radiusBottom"
+  },
+  "radius-inner":{
+    "mapping": "geometry.radiusInner"
+  },
+  "radius-outer":{
+    "mapping": "geometry.radiusOuter"
+  },
+  "radius-top":{
+    "mapping": "geometry.radiusTop"
+  },
+  "radius-tubular":{
+    "mapping": "geometry.radiusTubular"
+  },
+  "repeat": {
+    "mapping": "material.repeat"
+  },
+  "roughness": {
+    "mapping": "material.roughness"
+  },
+  "response-type": {},
+  "reverse-mouse-drag": {
+    "mapping": "look-controls.reverseMouseDrag"
+  },
+  "segments": {
+    "mapping": "geometry.segments"
+  },
+  "segments-depth": {
+    "mapping": "geometry.segmentsDepth"
+  },
+  "segments-height": {
+    "mapping": "geometry.segmentsHeight"
+  },
+  "segments-phi": {
+    "mapping": "geometry.segmentsPhi"
+  },
+  "segments-radial": {
+    "mapping": "geometry.segmentsRadial"
+  },
+  "segments-theta": {
+    "mapping": "geometry.segmentsTheta"
+  },
+  "segments-tubular": {
+    "mapping": "geometry.segmentsTubular"
+  },
+  "segments-width": {
+    "mapping": "geometry.segmentsWidth"
+  },
+  "shader": {
+    "mapping": "material.shader"
+  },
+  "side":{
+    "mapping": "material.side"
+  },
+  "spherical-env-map": {
+    "mapping": "material.sphericalEnvMap"
+  },
+  "src": {
+    "mapping": "material.src"
+  },
+  "tab-size": {
+    "mapping": "text.tabSize"
+  },
+  "target": {
+    "mapping": "light.target"
+  },
+  "theta-length": {
+    "mapping": "geometry.thetaLength"
+  },
+  "theta-start": {
+    "mapping": "geometry.thetaStart"
+  },
+  "timeout": {},
+  "title": {
+    "mapping": "link.title"
+  },
+  "to": {},
+  "transparent": {
+    "mapping": "material.transparent"
+  },
+  "type": {
+    "mapping": "light.type"
+  },
+  "user-height": {
+    "mapping": "camera.userHeight"
+  },
+  "value": {
+    "mapping": "text.value"
+  },
+  "vertex-a": {
+    "mapping": "geometry.vertexA"
+  },
+  "vertex-b": {
+    "mapping": "geometry.vertexB"
+  },
+  "vertex-c": {
+    "mapping": "geometry.vertexC"
+  },
+  "volume": {
+    "mapping": "sound.volume"
+  },
+  "wasd-controls-enabled": {
+    "mapping": "wasd-controls.enabled",
+    "type": "flag"
+  },
+  "white-space": {
+    "mapping": "text.whiteSpace"
+  },
+  "width": {
+    "mapping": "geometry.width"
+  },
+  "wireframe": {
+    "mapping": "material.wireframe"
+  },
+  "wireframe-linewidth": {
+    "mapping": "material.wireframeLinewidth"
+  },
+  "wrap-count": {
+    "mapping": "text.wrapCount"
+  },
+  "wrap-pixels": {
+    "mapping": "text.wrapPixels"
+  },
+  "z-offset": {
+    "mapping": "text.zOffset"
+  }
+}
