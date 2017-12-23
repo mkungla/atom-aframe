@@ -3,34 +3,9 @@
 import semver from 'semver'
 
 export default class Validator {
-  /**
-   * Initialize all validate methods
-   *
-   * @param  {pkg}  package module
-   */
-  bind (pkg) {
-    pkg.validate = this.validate.bind(pkg)
-    pkg.isValid = this.isValid.bind(pkg)
+  static validate () {
+    return this.validateConfig() ? this.validateAtomVersion() : false
   }
-
-  /**
-   * validate package
-   *
-   * @return {Boolean} true if package is valid
-   */
-  validate () {
-    this.valid = Validator.validateAtomVersion() && Validator.validateConfig()
-  }
-
-  /**
-   * Is package valid and should be enabled
-   *
-   * @return {Boolean} isValid
-   */
-  isValid () {
-    return this.valid || false
-  }
-
   /**
    * Can package be activated for current Atom version
    *
@@ -51,11 +26,14 @@ export default class Validator {
   }
 
   /**
-   * Validate package configuration
+   * Validate package configuration and clean up deprecated config
    *
    * @return {Boolean} true for valid atom-aframe config
    */
   static validateConfig () {
+    return this.handleDeprecatedConfig()
+  }
+  static handleDeprecatedConfig () {
     const deprecated = atom.config.get('atom-aframe.devel.deprecatedConf')
     if (deprecated && deprecated.length > 0) {
       for (let c of deprecated) {

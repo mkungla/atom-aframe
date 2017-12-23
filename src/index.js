@@ -1,82 +1,94 @@
 'use babel'
 
-import {CompositeDisposable, Emitter} from 'atom'
-
-import Services from './services'
+import {Session} from './session'
+import {WorkspaceCommands} from './commands'
+import {Activator} from './activator'
 import Validator from './validator'
-import Session from './session'
-import Dispatcher from './dispatcher'
-import Commands from './commands'
 
 export default {
-  valid: false,
-  statusBar: null,
-  subscriptions: null,
-  emitter: null,
   session: null,
-  /**
-   * Called before atom-aframe package is activated.
-   * This gives you a chance to handle the serialized package state before
-   * the package's derserializers and view providers are used.
-   *
-   * @param {Object} state data from the last time the window was serialized
-   */
-  initialize (state) {
-    // Initialize atom services
-    new Services().bind(this)
-    // Set up validator
-    new Validator().bind(this)
-    this.session = new Session(state)
-    this.validate()
-  },
+  activator: null,
+  commandsLoaded: null,
 
   /**
-   * Called when atom-aframe package is activated
+   * activate atom-aframe package
+   *
+   * @param  {Object} state from last package serialization
    */
   activate () {
-    if (!this.isValid()) { return }
-    this.subscriptions = new CompositeDisposable()
-    this.emitter = new Emitter()
-
-    let dispatcher = new Dispatcher()
-    dispatcher.bind(this)
-    this.subscriptions.add(...dispatcher.subscribe(this))
-
-    let commands = new Commands()
-    this.subscriptions.add(...commands.all())
+    if (!Validator.validate()) { return }
+    this.session = new Session(/* state */)
+    this.commandsLoaded = false
+    this.activator = new Activator((cmd) => {
+      const initCommnds = !this.commandsLoaded
+      this.loadCommands()
+      // run only command
+      if (cmd && initCommnds) {
+        atom.commands.dispatch(atom.views.getView(atom.workspace), cmd)
+        return
+      }
+      this.load()
+    })
+    this.session.subscribe(this.activator)
   },
 
   /**
-   * Called when the window is shutting down
-   * so we can restore atom-aframe to where the user left off.
-   *
-   * @return {Session} state of atom-aframe
-   */
-  serialize () {
-    return this.session
-  },
-
-  /**
-   * Called when the window is shutting down so release external resources
-   * e.g stop watching project package.json for A-Frame version
-   */
-  dispose () {
-    if (this.subscriptions) {
-      this.subscriptions.dispose()
-      this.subscriptions = null
-    }
-    if (this.emitter) {
-      this.emitter.dispose()
-      this.emitter = null
-    }
-    this.statusBar = null
-    this.valid = false
-  },
-
-  /**
-   * alias dispose
+   * deactivate the package
    */
   deactivate () {
-    this.dispose()
+    if (this.activator) {
+      this.activator.dispose()
+      this.activator = null
+    }
+
+    this.session.destroy()
+    this.session = null
+
+    this.commandsLoaded = false
+  },
+
+  /**
+   * Initialize statusbar
+   *
+   * @param  {statusBar} sb https://github.com/atom/status-bar
+   */
+  consumeStatusBar (sb) {
+    this.session.statusBar.setStatusBar(sb)
+    this.session.statusBar.attach()
+  },
+
+  /**
+   * Actual activation of the package
+   */
+  load () {
+    if (this.activator) {
+      this.activator.dispose()
+      this.activator = null
+    }
+    this.session.start()
+  },
+
+  /**
+   * Set up workspace commands
+   */
+  loadCommands () {
+    if (this.commandsLoaded) {
+      return
+    }
+    this.session.subscribe(WorkspaceCommands.openDocumentation())
+    this.session.subscribe(WorkspaceCommands.openWebsite())
+    this.session.subscribe(WorkspaceCommands.openGithub())
+    this.session.subscribe(WorkspaceCommands.openSettings())
+    this.commandsLoaded = true
+  },
+
+  /**
+   * Init and setup aframe autocomplete provider
+   *
+   * @return {AutocompleteProvider} autocomplete.provider
+   */
+  provideAutocomplete () {
+    this.session.autocomplete.setDocVersion(this.session.aframe.getDocVersion())
+    return this.session.autocomplete
   }
 }
