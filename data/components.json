@@ -1,0 +1,339 @@
+{
+  "camera": {
+    "description": "The camera component defines from which perspective the user views the scene.",
+    "properties": {
+      "active": "true",
+      "far": "10000",
+      "fov": "80",
+      "near": "0.005",
+      "userHeight": "0",
+      "zoom": "1"
+    }
+  },
+  "collada-model": {
+    "description": "The collada-model component loads a 3D model using a COLLADA (.DAE) file.",
+    "properties": {
+      "src": null
+    }
+  },
+  "cursor": {
+    "description": "The  cursor component provides hover and click states for interaction on top of the raycaster component.",
+    "properties": {
+      "downEvents": "[]",
+      "fuse": "false",
+      "fuseTimeout": "1500",
+      "rayOrigin": "entity",
+      "upEvents": "[]"
+    }
+  },
+  "daydream-controls": {
+    "description": "The daydream-controls component interfaces with the Google Daydream controllers. ",
+    "properties": {
+      "armModel": "true",
+      "buttonColor": "#000000",
+      "buttonTouchedColor": "#777777",
+      "buttonHighlightColor": "#FFFFFF",
+      "hand": "",
+      "model": "true",
+      "rotationOffset": "0"
+    }
+  },
+  "debug": {
+    "type": "flag",
+    "description": "The debug component enables component-to-DOM serialization.",
+    "sceneOnly": true
+  },
+  "embedded": {
+    "type": "flag",
+    "description": "Remove fullscreen styles from the canvas.",
+    "sceneOnly": true
+  },
+  "fog": {
+    "description": "Add fog.",
+    "value": "type: linear; color: #000",
+    "sceneOnly": true
+  },
+  "gearvr-controls": {
+    "description": "The gearvr-controls component interfaces with the Samsung/Oculus Gear VR controllers.",
+    "properties": {
+      "armModel": "true",
+      "buttonColor": "#000000",
+      "buttonTouchedColor": "#777777",
+      "buttonHighlightColor": "#FFFFFF",
+      "hand": "",
+      "model": "true",
+      "rotationOffset": "0"
+    }
+  },
+  "geometry": {
+    "description": "The geometry component provides a basic shape for an entity.",
+    "properties": {
+      "buffer": "true",
+      "mergeTo": "",
+      "primitive": "box",
+      "skipCache": "false",
+      "width": "1",
+      "height": "1",
+      "depth": "1"
+    }
+  },
+  "gltf-model": {
+    "description": "glTF (GL Transmission Format) is an open project by Khronos providing a common, extensible format for 3D assets that is both efficient and highly interoperable with modern web technologies.",
+    "properties": {
+      "src": null
+    }
+  },
+  "hand-controls": {
+    "description": "The hand-controls component provides tracked hands (using a prescribed model) with animated gestures. hand-controls wraps the vive-controls and oculus-touch-controls which in turn wrap the tracked-controls component. By specifying just hand-controls, we have something that works well with both Vive and Rift. The component gives extra events and handles hand animations and poses.",
+    "valOption": [
+      "left",
+      "right"
+    ]
+  },
+  "keyboard-shortcuts": {
+    "description": "Toggle keyboard shortcuts.",
+    "properties": {
+      "enterVR": "true"
+    },
+    "sceneOnly": true
+  },
+  "laser-controls": {
+    "description": "The  laser-controls component provides tracked controls with a laser or ray cursor shooting out to be used for input and interactions.",
+    "valOption": [
+      "left",
+      "right"
+    ]
+  },
+  "light": {
+    "description": "The light component defines the entity as a source of light.",
+    "properties": {
+      "type": "directional",
+      "color": "#fff",
+      "intensity": "1.0"
+    }
+  },
+  "line": {
+    "description": "The line component draws a line given a start coordinate and end coordinate using THREE.Line.",
+    "properties": {
+      "start": "0 0 0",
+      "end": "0 0 0",
+      "color": "#74BEC1",
+      "opacity": "1",
+      "visible": "true"
+    }
+  },
+  "link": {
+    "description": "The link component connects between experiences and allows for traversing between VR web pages.",
+    "value": "",
+    "properties": {
+      "color": "#fff",
+      "highlighted": "false",
+      "highlightedColor": "#24CAFF",
+      "href": "",
+      "on": "",
+      "image": "",
+      "peekMode": "false",
+      "title": "",
+      "visualAspectEnabled": ""
+    }
+  },
+  "look-controls": {
+    "description": "The look-controls component.",
+    "properties": {
+      "enabled": "true",
+      "hmdEnabled": "true",
+      "reverseMouseDrag": "false",
+      "standing": "true",
+      "touchEnabled": "true"
+    }
+  },
+  "material": {
+    "description": "The material component gives appearance to an entity.",
+    "properties": {
+      "alphaTest": "0",
+      "depthTest": "true",
+      "flatShading": "false",
+      "npot": "false",
+      "offset": "0 0",
+      "opacity": "1.0",
+      "repeat": "1 1",
+      "shader": "standard",
+      "side": "front",
+      "transparent": "false",
+      "vertexColors": "none",
+      "visible": "true"
+    }
+  },
+  "obj-model": {
+    "description": "The obj-model component loads a 3D model and material using a Wavefront (.OBJ) file and a .MTL file.",
+    "properties": {
+      "obj": "",
+      "mtl": ""
+    }
+  },
+  "oculus-touch-controls": {
+    "description": "The oculus-touch-controls component interfaces with the Oculus Touch controllers.",
+    "properties": {
+      "hand": "left",
+      "model": "true",
+      "rotationOffset": "0"
+    }
+  },
+  "pool": {
+    "description": "The pool component allows for object pooling. This gives us a reusable pool of entities to avoid creating and destroying the same kind of entities in dynamic scenes. Object pooling helps reduce GC pauses.",
+    "properties": {
+      "dynamic": "false",
+      "mixin": "",
+      "size": "0"
+    }
+  },
+  "position": {
+    "description": "The position component places entities at certain spots in 3D space. Position takes a coordinate value as three space-delimited numbers.",
+    "value": "0 0 0"
+  },
+  "raycaster": {
+    "description": "The raycaster component provides line-based intersection testing with a raycaster.",
+    "properties": {
+      "direction": "0 0 0",
+      "far": "Infinity",
+      "interval": "100",
+      "near": "0",
+      "objects": "",
+      "origin": "0 0 0",
+      "recursive": "true",
+      "showLine": "false",
+      "useWorldXoordinates": "false"
+    }
+  },
+  "rotation": {
+    "description": "The rotation component defines the orientation of an entity. It takes the pitch (x), yaw (y), and roll (z) as three space-delimited numbers indicating degrees of rotation. ",
+    "value": "0 0 0"
+  },
+  "scale": {
+    "description": "The scale component defines a shrinking, stretching, or skewing transformation of an entity. It takes three scaling factors for the X, Y, and Z axes.",
+    "value": "0 0 0"
+  },
+  "screenshot": {
+    "description": "The screenshot component lets us take different types of screenshots with keyboard shortcuts. A-Frame attaches this component to the scene by default so we don’t have to do anything to use the component.",
+    "properties": {
+      "width": "4096",
+      "height": "2048"
+    },
+    "sceneOnly": true
+  },
+  "shadow": {
+    "description": "The shadow component enables shadows for an entity and its children. Receiving shadows from surrounding objects and casting shadows onto other objects may (and often should) be enabled independently.",
+    "properties": {
+      "cast": "true",
+      "receive": "true"
+    }
+  },
+  "sound": {
+    "description": "The sound component defines the entity as a source of sound or audio. The sound component is positional and is thus affected by the components-position.",
+    "properties": {
+      "autoplay": "false",
+      "distanceModel": "inverse",
+      "loop": "false",
+      "maxDistance": "10000",
+      "on": "",
+      "poolSize": "1",
+      "refDistance": "1",
+      "rolloffFactor": "1",
+      "src": "",
+      "volume":""
+    }
+  },
+  "stats": {
+    "type": "flag",
+    "description": "Toggle performance stats.",
+    "sceneOnly": true
+  },
+  "text": {
+    "description": "The text component renders signed distance field (SDF) font text.",
+    "properties": {
+      "align": "left",
+      "alphaTest": "0.5",
+      "anchor": "center",
+      "baseline": "center",
+      "color": "#fff",
+      "font": "default",
+      "fontImage": "",
+      "height": "",
+      "letterSpacing": "0",
+      "lineHeight": "",
+      "opacity": "1.0",
+      "shader": "sdf",
+      "side": "front",
+      "tabSize": "4",
+      "transparent": "true",
+      "value": "",
+      "whitespace": "normal",
+      "width": "",
+      "wrapCount": "40",
+      "wrapPixels": "",
+      "zOffset": "0.001"
+    }
+  },
+  "tracked-controls": {
+    "description": "The tracked-controls component interfaces with tracked controllers.",
+    "properties": {
+      "armModel": "true",
+      "controller": "0",
+      "id": "",
+      "idPrefix": "",
+      "rotationOffset": "0",
+      "headElement": "",
+      "hand": "right"
+    }
+  },
+  "visible": {
+    "description": "The visible component determines whether to render an entity.",
+    "valOption": [
+      "true",
+      "false"
+    ]
+  },
+  "vive-controls": {
+    "description": "The vive-controls component interfaces with the HTC Vive controllers/wands.",
+    "properties": {
+      "buttonColor": "#FAFAFA",
+      "buttonHighlightColor": "#22D1EE",
+      "hand": "right",
+      "model": "true",
+      "rotationOffset": "0"
+    }
+  },
+  "vr-mode-ui": {
+    "type": "flag",
+    "description": "Toggle UI for entering and exiting VR.",
+    "value": "enabled: true",
+    "sceneOnly": true
+  },
+  "wasd-controls": {
+    "description": "The wasd-controls component controls an entity with the WASD or arrow keyboard keys.",
+    "properties": {
+      "acceleration": "65",
+      "adAxis": "x",
+      "adInverted": "false",
+      "easing": "20",
+      "enabled": "true",
+      "fly": "false",
+      "wsAxis": "z",
+      "wsInverted": "false"
+    }
+  },
+  "windows-motion-controls": {
+    "description": "The windows-motion-controls component interfaces with any spatial controllers exposed through Windows Mixed Reality as Spatial Input Sources (such as Motion Controllers). ",
+    "properties": {
+      "hand": "right",
+      "pair": "0",
+      "model": "true",
+      "hideDisconnected": "true"
+    }
+  },
+  "inspector": {
+    "type": "flag",
+    "description": "Inject the A-Frame Inspector.",
+    "sceneOnly": true
+  }
+}

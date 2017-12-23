@@ -1,0 +1,734 @@
+{
+  "a-scene": {
+    "description": "A-Frame scene.",
+    "components": [
+      "embedded",
+      "fog",
+      "keyboard-shortcuts",
+      "inspector",
+      "stats",
+      "vr-mode-ui"
+    ]
+  },
+  "a-entity": {
+    "description": "Entities are placeholder objects to which we plug in components to provide them appearance, behavior, and functionality. In A-Frame, entities are inherently attached with the position, rotation, and scale components"
+  },
+  "a-animation": {
+    "description": "A-Frame animation API",
+    "attributes": {
+      "attribute": {"value":"rotation"},
+      "begin": null,
+      "delay": {"value":"0"},
+      "direction": {"value":"normal"},
+      "dur": {"value":"1000"},
+      "easing": {"value":"ease"},
+      "end": null,
+      "fill": {"value":"forwards"},
+      "from": null,
+      "repeat": {"value":"0"},
+      "to": null
+    }
+  },
+  "a-mixin": {
+    "description": "Mixins provide a way to compose and reuse commonly-used sets of component properties."
+  },
+  "a-assets": {
+    "description": "A-Frame scene assets",
+    "attributes": {
+      "timeout": null
+    }
+  },
+  "a-asset-item": {
+    "description": "Invokes the three.js FileLoader. We can use <a-asset-item> for any file type. When finished, it will set its data member with the text response.",
+    "attributes": {
+      "response-type": null,
+      "src": {
+        "mapping": "src"
+      }
+    }
+  },
+  "a-box": {
+    "description":"The box primitive creates shapes such as boxes, cubes, or walls.",
+    "attributes": {
+      "ambient-occlusion-map": {"value":""},
+      "ambient-occlusion-map-intensity": {"value":"q"},
+      "ambient-occlusion-texture-offset": {"value":"0 0"},
+      "ambient-occlusion-texture-repeat": {"value":"1 1"},
+      "color": {"value":"#fff"},
+      "depth": {"value":"1"},
+      "displacement-bias": {"value":"0.5"},
+      "displacement-map": null,
+      "displacement-scale": {"value":"1"},
+      "displacement-texture-offset": {"value":"0 0"},
+      "displacement-texture-repeat": {"value":"1 1"},
+      "env-map": null,
+      "fog": {"value":"true"},
+      "height": {"value":"1"},
+      "metalness": {"value":"0"},
+      "normal-map": null,
+      "normal-scale": {"value":"1 1"},
+      "normal-texture-offset": {"value":"0 0"},
+      "normal-texture-repeat": {"value":"1 1"},
+      "repeat": {"value":"1 1"},
+      "roughness": {"value":"0.5"},
+      "segments-depth": {"value":"1"},
+      "segments-height": {"value":"1"},
+      "segments-width": {"value":"1"},
+      "spherical-env-map": null,
+      "src": null,
+      "width": {"value":"1"},
+      "wireframe": {"value":"false"},
+      "wireframe-linewidth": {"value":"2"}
+    }
+  },
+  "a-camera": {
+    "description": "The camera primitive determines what the user sees. We can change the viewport by modifying the camera entity’s position and rotation.",
+    "attributes": {
+      "far": null,
+      "fov": null,
+      "look-controls-enabled": null,
+      "near": null,
+      "user-height": null,
+      "reverse-mouse-drag": null,
+      "wasd-controls-enabled": null
+    }
+  },
+  "a-circle": {
+    "description": "The circle primitive creates circles surfaces using the geometry component with the type set to circle.",
+    "attributes": {
+      "ambient-occlusion-map": null,
+      "ambient-occlusion-map-intensity": {"value":"1"},
+      "ambient-occlusion-texture-offset": {"value":"0 0"},
+      "ambient-occlusion-texture-repeat": {"value":"1 1"},
+      "color": {"value":"#FFF"},
+      "displacement-bias": {"value":"0.5"},
+      "displacement-map": null,
+      "displacement-scale": {"value":"1"},
+      "displacement-texture-offset": {"value":"0 0"},
+      "displacement-texture-repeat": {"value":"1 1"},
+      "env-map": null,
+      "fog": {"value":"true"},
+      "height": {"value":"256"},
+      "metalness": {"value":"0"},
+      "normal-map": null,
+      "normal-scale": {"value":"1 1"},
+      "normal-texture-offset": {"value":"0 0"},
+      "normal-texture-repeat": {"value":"1 1"},
+      "radius": {"value":"1"},
+      "repeat": {"value":"1 1"},
+      "roughness": {"value":"0.5"},
+      "segments": {"value":"32"},
+      "spherical-env-map": null,
+      "src": null,
+      "width": {"value":"512"},
+      "wireframe": {"value":"false"},
+      "wireframe-linewidth": {"value":"2"}
+    }
+  },
+  "a-collada-model": {
+    "description": "The COLLADA model primitive displays a 3D COLLADA model created from a 3D modeling program or downloaded from the web.",
+    "attributes": {
+      "src": {"mapping": "collada-model.src"}
+    }
+  },
+  "a-cone": {
+    "description": "The cone primitive creates a cone shape.",
+    "attributes": {
+      "ambient-occlusion-map": null,
+      "ambient-occlusion-map-intensity": {"value":"1"},
+      "ambient-occlusion-texture-offset": {"value":"0 0"},
+      "ambient-occlusion-texture-repeat": {"value":"1 1"},
+      "color": {"value":"#FFF"},
+      "displacement-bias": {"value":"0.5"},
+      "displacement-map": null,
+      "displacement-scale": {"value":"1"},
+      "displacement-texture-offset": {"value":"0 0"},
+      "displacement-texture-repeat": {"value":"1 1"},
+      "env-map": null,
+      "fog": {"value":"true"},
+      "height": {"value":"1"},
+      "metalness": {"value":"0"},
+      "normal-map": null,
+      "normal-scale": {"value":"1 1"},
+      "normal-texture-offset": {"value":"0 0"},
+      "normal-texture-repeat": {"value":"1 1"},
+      "open-ended": {"value":"false"},
+      "radius-bottom": {"value":"1"},
+      "radius-top": {"value":"0.8"},
+      "repeat": {"value":"1 1"},
+      "roughness": {"value":"0.5"},
+      "segments-height": {"value":"18"},
+      "segments-radial": {"value":"36"},
+      "spherical-env-map": null,
+      "src": null,
+      "theta-length": {"value":"360"},
+      "theta-start": {"value":"0"},
+      "width": {"value":"512"},
+      "wireframe": {"value":"false"},
+      "wireframe-linewidth": {"value":"2"}
+    }
+  },
+  "a-cursor": {
+    "description": "The cursor primitive is a reticle that allows for clicking and basic interactivity with a scene on devices that do not have a hand controller. The default appearance is a ring geometry. The cursor is usually placed as a child of the camera.",
+    "attributes": {
+      "far": null,
+      "fuse": null,
+      "fuse-timeout": null,
+      "interval": null,
+      "objects": null
+    }
+  },
+  "a-curvedimage": {
+    "description": "The curved image primitive creates images that bend around the user",
+    "attributes": {
+      "color": {"value":"#fff"},
+      "height": {"value":"1"},
+      "metalness": {"value":"0"},
+      "opacity": {"value":"1"},
+      "open-ended": {"value":"true"},
+      "radius": {"value":"2"},
+      "repeat": null,
+      "roughness": {"value":"0.5"},
+      "segments-height": {"value":"18"},
+      "segments-radial": {"value":"48"},
+      "shader": {"value":"flat"},
+      "side": {"value":"double"},
+      "src": null,
+      "theta-lenght": {"value":"270"},
+      "theta-start": {"value":"0"},
+      "transparent": {"value":"true"}
+    }
+  },
+  "a-cylinder": {
+    "description": "The cylinder primitive is used to create tubes and curved surfaces.",
+    "attributes": {
+      "ambient-occlusion-map": null,
+      "ambient-occlusion-map-intensity": {"value":"1"},
+      "ambient-occlusion-texture-offset": {"value":"0 0"},
+      "ambient-occlusion-texture-repeat": {"value":"1 1"},
+      "color": {"value":"#fff"},
+      "displacement-bias": {"value":"0.5"},
+      "displacement-map": null,
+      "displacement-scale": {"value":"1"},
+      "displacement-texture-offset": {"value":"0 0"},
+      "displacement-texture-repeat": {"value":"1 1"},
+      "env-map": null,
+      "fog": {"value":"true"},
+      "height": {"value":"1"},
+      "metalness": {"value":"0"},
+      "normal-map": null,
+      "normal-scale": {"value":"1 1"},
+      "normal-texture-offset": {"value":"0 0"},
+      "normal-texture-repeat": {"value":"1 1"},
+      "open-ended": {"value":"false"},
+      "radius-bottom": {"value":"1"},
+      "radius-top": {"value":"0.8"},
+      "repeat": {"value":"1 1"},
+      "roughness": {"value":"0.5"},
+      "segments-height": {"value":"18"},
+      "segments-radial": {"value":"36"},
+      "spherical-env-map": null,
+      "src": null,
+      "theta-length": {"value":"360"},
+      "theta-start": {"value":"0"},
+      "width": {"value":"512"},
+      "wireframe": {"value":"false"},
+      "wireframe-linewidth": {"value":"2"}
+    }
+  },
+  "a-dodecahedron": {
+    "description": "Polyhedron with 12 flat faces",
+    "attributes": {
+      "ambient-occlusion-map": null,
+      "ambient-occlusion-map-intensity": {"value":"1"},
+      "ambient-occlusion-texture-offset": {"value":"0 0"},
+      "ambient-occlusion-texture-repeat": {"value":"1 1"},
+      "color": {"value":"#fff"},
+      "displacement-bias": {"value":"0.5"},
+      "displacement-map": null,
+      "displacement-scale": {"value":"1"},
+      "displacement-texture-offset": {"value":"0 0"},
+      "displacement-texture-repeat": {"value":"1 1"},
+      "env-map": null,
+      "fog": {"value":"true"},
+      "height": {"value":"256"},
+      "metalness": {"value":"0"},
+      "normal-map": null,
+      "normal-scale": {"value":"1 1"},
+      "normal-texture-offset": {"value":"0 0"},
+      "normal-texture-repeat": {"value":"1 1"},
+      "open-ended": {"value":"false"},
+      "radius-bottom": {"value":"1"},
+      "radius-top": {"value":"0.8"},
+      "repeat": {"value":"1 1"},
+      "roughness": {"value":"0.5"},
+      "segments-height": {"value":"18"},
+      "segments-radial": {"value":"36"},
+      "spherical-env-map": null,
+      "src": null,
+      "theta-length": {"value":"360"},
+      "theta-start": {"value":"0"},
+      "width": {"value":"512"},
+      "wireframe": {"value":"false"},
+      "wireframe-linewidth": {"value":"2"}
+    }
+  },
+  "a-gltf-model": {
+    "description": "The glTF model primitive displays a 3D glTF model created from a 3D modeling program or downloaded from the web.",
+    "attributes": {
+      "src": {"mapping":"gltf-model.src"}
+    }
+  },
+  "a-icosahedron": {
+    "description": "Polyhedron with 20 flat faces",
+    "attributes": {
+      "ambient-occlusion-map": null,
+      "ambient-occlusion-map-intensity": {"value":"1"},
+      "ambient-occlusion-texture-offset": {"value":"0 0"},
+      "ambient-occlusion-texture-repeat": {"value":"1 1"},
+      "color": {"value":"#fff"},
+      "detail": {"value":"0"},
+      "displacement-bias": {"value":"0.5"},
+      "displacement-map": null,
+      "displacement-scale": {"value":"1"},
+      "displacement-texture-offset": {"value":"0 0"},
+      "displacement-texture-repeat": {"value":"1 1"},
+      "env-map": null,
+      "fog": {"value":"true"},
+      "height": {"value":"256"},
+      "metalness": {"value":"0"},
+      "normal-map": null,
+      "normal-scale": {"value":"1 1"},
+      "normal-texture-offset": {"value":"0 0"},
+      "normal-texture-repeat": {"value":"1 1"},
+      "radius": {"value":"1"},
+      "repeat": {"value":"1 1"},
+      "roughness": {"value":"0.5"},
+      "spherical-env-map": null,
+      "src": null,
+      "width": {"value":"512"},
+      "wireframe": {"value":"false"},
+      "wireframe-linewidth": {"value":"2"}
+    }
+  },
+  "a-image": {
+    "description": "The image primitive shows an image on a flat plane.",
+    "attributes": {
+      "color": {"value":"#fff"},
+      "height": {"value":"1"},
+      "metalness": {"value":"0"},
+      "opacity": {"value":"1"},
+      "repeat": null,
+      "roughness": {"value":"0.5"},
+      "segments-height": {"value":"1"},
+      "segments-width": {"value":"1"},
+      "shader": {"value":"flat"},
+      "side": {"value":"front"},
+      "src": null,
+      "transparent": {"value":"false"},
+      "width": {"value":"1"}
+    }
+  },
+  "a-light": {
+    "description": "A light changes the lighting and shading of the scene.",
+    "attributes": {
+      "angle": {"value":"60"},
+      "color": {"value":"#fff"},
+      "decay": {"value":"1"},
+      "distance": {"value":"0.0"},
+      "ground-color": {"value":"#fff"},
+      "intensity": {"value":"1.0"},
+      "penumbra": {"value":"0.0"},
+      "type": {"value":"directional"},
+      "target": null
+    }
+  },
+  "a-link": {
+    "description": "The link primitive provides a compact API to define links that resembles the traditional <a> tag.",
+    "attributes": {
+      "href": null,
+      "title": null,
+      "src": null
+    }
+  },
+  "a-obj-model": {
+    "description": "The .OBJ model primitive displays a 3D Wavefront model.",
+    "attributes": {
+      "mtl": null,
+      "src": null
+    }
+  },
+  "a-octahedron": {
+    "description": "Polyhedron with 8 flat faces",
+    "attributes": {
+      "ambient-occlusion-map": null,
+      "ambient-occlusion-map-intensity": {"value":"1"},
+      "ambient-occlusion-texture-offset": {"value":"0 0"},
+      "ambient-occlusion-texture-repeat": {"value":"1 1"},
+      "color": {"value":"#fff"},
+      "detail": {"value":"0"},
+      "displacement-bias": {"value":"0.5"},
+      "displacement-map": null,
+      "displacement-scale": {"value":"1"},
+      "displacement-texture-offset": {"value":"0 0"},
+      "displacement-texture-repeat": {"value":"1 1"},
+      "env-map": null,
+      "fog": {"value":"true"},
+      "height": {"value":"256"},
+      "metalness": {"value":"0"},
+      "normal-map": null,
+      "normal-scale": {"value":"1 1"},
+      "normal-texture-offset": {"value":"0 0"},
+      "normal-texture-repeat": {"value":"1 1"},
+      "radius": {"value":"1"},
+      "repeat": {"value":"1 1"},
+      "roughness": {"value":"0.5"},
+      "spherical-env-map": null,
+      "src": null,
+      "width": {"value":"512"},
+      "wireframe": {"value":"false"},
+      "wireframe-linewidth": {"value":"2"}
+    }
+  },
+  "a-plane": {
+    "description": "The plane primitive creates flat surfaces using the geometry component with the type set to plane.",
+    "attributes": {
+      "ambient-occlusion-map": null,
+      "ambient-occlusion-map-intensity": {"value":"1"},
+      "ambient-occlusion-texture-offset": {"value":"0 0"},
+      "ambient-occlusion-texture-repeat": {"value":"1 1"},
+      "color": {"value":"#fff"},
+      "displacement-bias": {"value":"0.5"},
+      "displacement-map": null,
+      "displacement-scale": {"value":"1"},
+      "displacement-texture-offset": {"value":"0 0"},
+      "displacement-texture-repeat": {"value":"1 1"},
+      "env-map": null,
+      "fog": {"value":"true"},
+      "height": {"value":"1"},
+      "metalness": {"value":"0"},
+      "normal-map": null,
+      "normal-scale": {"value":"1 1"},
+      "normal-texture-offset": {"value":"0 0"},
+      "normal-texture-repeat": {"value":"1 1"},
+      "repeat": {"value":"1 1"},
+      "roughness": {"value":"0.5"},
+      "segments-height": {"value":"1"},
+      "segments-width": {"value":"1"},
+      "spherical-env-map": null,
+      "src": null,
+      "width": {"value":"1"},
+      "wireframe": {"value":"false"},
+      "wireframe-linewidth": {"value":"2"}
+    }
+  },
+  "a-ring": {
+    "description": "The ring primitive creates a ring or disc shape.",
+    "attributes": {
+      "ambient-occlusion-map": null,
+      "ambient-occlusion-map-intensity": {"value":"1"},
+      "ambient-occlusion-texture-offset": {"value":"0 0"},
+      "ambient-occlusion-texture-repeat": {"value":"1 1"},
+      "color": {"value":"#fff"},
+      "displacement-bias": {"value":"0.5"},
+      "displacement-map": null,
+      "displacement-scale": {"value":"1"},
+      "displacement-texture-offset": {"value":"0 0"},
+      "displacement-texture-repeat": {"value":"1 1"},
+      "env-map": null,
+      "fog": {"value":"true"},
+      "height": {"value":"256"},
+      "metalness": {"value":"0"},
+      "normal-map": null,
+      "normal-scale": {"value":"1"},
+      "normal-texture-offset": {"value":"0 0"},
+      "normal-texture-repeat": {"value":"1 1"},
+      "radius-inner": {"value":"0.8"},
+      "radius-outer": {"value":"1.2"},
+      "repeat": {"value":"1 1"},
+      "roughness": {"value":"0.5"},
+      "segments-phi": {"value":"10"},
+      "segments-theta": {"value":"32"},
+      "spherical-env-map": null,
+      "src": null,
+      "theta-lenght": {"value":"360"},
+      "theta-start": {"value":"0"},
+      "width": {"value":"512"},
+      "wireframe": {"value":"false"},
+      "wireframe-linewidth": {"value":"2"}
+    }
+  },
+  "a-sky": {
+    "description": "The sky primitive adds a background color or 360° image to a scene. A sky is a large sphere with a color or texture mapped to the inside.",
+    "attributes": {
+      "color": {"value":"#fff"},
+      "metalness": {"value":"0"},
+      "opacity": {"value":"1"},
+      "phi-lenght": {"value":"360"},
+      "phi-start": {"value":"0"},
+      "radius": {"value":"5000"},
+      "repeat": null,
+      "roughness": {"value":"0.5"},
+      "segments-height": {"value":"20"},
+      "segments-width": {"value":"64"},
+      "shader": {"value":"flat"},
+      "side": {"value":"front"},
+      "src": null,
+      "theta-length": {"value":"180"},
+      "theta-start": {"value":"0"},
+      "transparent": {"value":"false"}
+    }
+  },
+  "a-sound": {
+    "description": "The sound primitive wraps the sound component.",
+    "attributes": {
+      "autoplay": {"value":"false"},
+      "loop": {"value":"false"},
+      "on": null,
+      "src": null,
+      "volume": {"value":"1"}
+    }
+  },
+  "a-sphere": {
+    "description": "The sphere primitive creates a spherical or polyhedron shapes. It wraps an entity that prescribes the geometry component with its geometric primitive set to sphere.",
+    "attributes": {
+      "ambient-occlusion-map": null,
+      "ambient-occlusion-map-intensity": {"value":"1"},
+      "ambient-occlusion-texture-offset": {"value":"0 0"},
+      "ambient-occlusion-texture-repeat": {"value":"1 1"},
+      "color": {"value":"#fff"},
+      "displacement-bias": {"value":"0.5"},
+      "displacement-map": null,
+      "displacement-scale": {"value":"1"},
+      "displacement-texture-offset": {"value":"0 0"},
+      "displacement-texture-repeat": {"value":"1 1"},
+      "env-map": null,
+      "fog": {"value":"true"},
+      "height": {"value":"256"},
+      "metalness": {"value":"0"},
+      "normal-map": null,
+      "normal-scale": {"value":"1 1"},
+      "normal-texture-offset": {"value":"0 0"},
+      "normal-texture-repeat": {"value":"1 1"},
+      "phi-length": {"value":"360"},
+      "phi-start": {"value":"0"},
+      "radius": {"value":"1"},
+      "repeat": {"value":"1 1"},
+      "roughness": {"value":"0.5"},
+      "segments-height": {"value":"18"},
+      "segments-width": {"value":"36"},
+      "spherical-env-map": null,
+      "src": null,
+      "theta-lenght": {"value":"180"},
+      "theta-start": {"value":"0"},
+      "width": {"value":"512"},
+      "wireframe": {"value":"false"},
+      "wireframe-linewidth": {"value":"2"}
+    }
+  },
+  "a-tetrahedron": {
+    "description": "Polyhedron composed of 4 triangular faces (triangular pyramid).",
+    "attributes": {
+      "ambient-occlusion-map": null,
+      "ambient-occlusion-map-intensity": {"value":"1"},
+      "ambient-occlusion-texture-offset": {"value":"0 0"},
+      "ambient-occlusion-texture-repeat": {"value":"1 1"},
+      "color": {"value":"#fff"},
+      "detail": {"value":"0"},
+      "displacement-bias": {"value":"0.5"},
+      "displacement-map": null,
+      "displacement-scale": {"value":"1"},
+      "displacement-texture-offset": {"value":"0 0"},
+      "displacement-texture-repeat": {"value":"1 1"},
+      "env-map": null,
+      "fog": {"value":"true"},
+      "height": {"value":"256"},
+      "metalness": {"value":"0"},
+      "normal-map": null,
+      "normal-scale": {"value":"1 1"},
+      "normal-texture-offset": {"value":"0 0"},
+      "normal-texture-repeat": {"value":"1 1"},
+      "radius": {"value":"1"},
+      "repeat": {"value":"1 1"},
+      "roughness": {"value":"0.5"},
+      "spherical-env-map": null,
+      "src": null,
+      "width": {"value":"512"},
+      "wireframe": {"value":"false"},
+      "wireframe-linewidth": {"value":"2"}
+    }
+  },
+  "a-text": {
+    "description": "Wraps the text component.",
+    "attributes": {
+      "align": null,
+      "alpha-test": null,
+      "anchor": null,
+      "baseline": null,
+      "color": {
+        "mapping": "text.color"
+      },
+      "font": null,
+      "font-image": null,
+      "height":  {
+        "mapping": "text.height"
+      },
+      "letter-spacing": null,
+      "line-height": null,
+      "opacity":  {
+        "mapping": "text.opacity"
+      },
+      "shader": {
+        "mapping": "text.shader"
+      },
+      "side": {
+        "mapping": "text.side"
+      },
+      "tab-size": null,
+      "transparent": {
+        "mapping": "text.transparent"
+      },
+      "value": null,
+      "white-space": null,
+      "width": {
+        "mapping": "text.width"
+      },
+      "wrap-count": null,
+      "wrap-pixels": null,
+      "z-offset": null
+    }
+  },
+  "a-torus-knot": {
+    "description": "The torus knot primitive creates pretzel shapes using the geometry component with the type set to torusKnot.",
+    "attributes": {
+      "ambient-occlusion-map": null,
+      "ambient-occlusion-map-intensity": {"value":"1"},
+      "ambient-occlusion-texture-offset": {"value":"0 0"},
+      "ambient-occlusion-texture-repeat": {"value":"1 1"},
+      "color": {"value":"#fff"},
+      "displacement-bias": {"value":"0.5"},
+      "displacement-map": null,
+      "displacement-scale": {"value":"1"},
+      "displacement-texture-offset": {"value":"0 0"},
+      "displacement-texture-repeat": {"value":"1 1"},
+      "env-map": null,
+      "fog": {"value":"true"},
+      "height": {"value":"256"},
+      "metalness": {"value":"0"},
+      "normal-map": null,
+      "normal-scale": {"value":"1 1"},
+      "normal-texture-offset": {"value":"0 0"},
+      "normal-texture-repeat": {"value":"1 1"},
+      "p": {"value":"2"},
+      "q": {"value":"3"},
+      "radius": {"value":"1"},
+      "radius-tubular": {"value":"0.2"},
+      "repeat": {"value":"1 1"},
+      "roughness": {"value":"0.5"},
+      "segments-radial": {"value":"8"},
+      "segments-tubular": {"value":"100"},
+      "spherical-env-map": null,
+      "src": null,
+      "width": {"value":"512"},
+      "wireframe": {"value":"false"},
+      "wireframe-linewidth": {"value":"2"}
+    }
+  },
+  "a-torus": {
+    "description": "The torus primitive creates donut or tube shapes using the geometry component with the type set to torus.",
+    "attributes": {
+      "ambient-occlusion-map": null,
+      "ambient-occlusion-map-intensity": {"value":"1"},
+      "ambient-occlusion-texture-offset": {"value":"0 0"},
+      "ambient-occlusion-texture-repeat": {"value":"1 1"},
+      "arc": {"value":"360"},
+      "color": {"value":"#fff"},
+      "displacement-bias": {"value":"0.5"},
+      "displacement-map": null,
+      "displacement-scale": {"value":"1"},
+      "displacement-texture-offset": {"value":"0 0"},
+      "displacement-texture-repeat": {"value":"1 1"},
+      "env-map": null,
+      "fog": {"value":"true"},
+      "height": {"value":"256"},
+      "metalness": {"value":"0"},
+      "normal-map": null,
+      "normal-scale": null,
+      "normal-texture-offset": {"value":"0 0"},
+      "normal-texture-repeat": {"value":"1 1"},
+      "radius": {"value":"1"},
+      "radius-tubular": {"value":"0.2"},
+      "repeat": {"value":"1 1"},
+      "roughness": {"value":"0.5"},
+      "segments-radial": {"value":"36"},
+      "segments-tubular": {"value":"32"},
+      "spherical-env-map": null,
+      "src": null,
+      "width": {"value":"512"},
+      "wireframe": {"value":"false"},
+      "wireframe-linewidth": {"value":"2"}
+    }
+  },
+  "a-triangle": {
+    "description": "The triangle primitive creates triangle surfaces using the geometry component with the type set to triangle.",
+    "attributes": {
+      "ambient-occlusion-map": null,
+      "ambient-occlusion-map-intensity": {"value":"1"},
+      "ambient-occlusion-texture-offset": {"value":"0 0"},
+      "ambient-occlusion-texture-repeat": {"value":"1 1"},
+      "color": {"value":"#fff"},
+      "displacement-bias": {"value":"0.5"},
+      "displacement-map": null,
+      "displacement-scale": {"value":"1"},
+      "displacement-texture-offset": {"value":"0 0"},
+      "displacement-texture-repeat": {"value":"1 1"},
+      "env-map": null,
+      "fog": {"value":"true"},
+      "height": {"value":"256"},
+      "metalness": {"value":"0"},
+      "normal-map": null,
+      "normal-scale": {"value":"1 1"},
+      "normal-texture-offset": {"value":"0 0"},
+      "normal-texture-repeat": {"value":"1 1"},
+      "repeat": {"value":"1 1"},
+      "roughness": {"value":"0.5"},
+      "spherical-env-map": null,
+      "src": null,
+      "vertex-a": {"value":"0 0.5 0"},
+      "vertex-b": {"value":"-0.5 -0.5 0"},
+      "vertex-c": {"value":"0.5 -0.5 0"},
+      "width": {"value":"512"},
+      "wireframe": {"value":"false"},
+      "wireframe-linewidth": {"value":"2"}
+    }
+  },
+  "a-video": {
+    "description": "The video primitive plays a video as a texture on a flat plane.",
+    "attributes": {
+      "color": {"value":"#fff"},
+      "height": {"value":"1.75"},
+      "metalness": {"value":"0"},
+      "opacity": {"value":"1"},
+      "repeat": null,
+      "roughness": {"value":"0.5"},
+      "segments-height": {"value":"1"},
+      "segments-width": {"value":"1"},
+      "shader": {"value":"flat"},
+      "side": {"value":"front"},
+      "src": null,
+      "transparent": {"value":"false"},
+      "width": {"value":"3"}
+    }
+  },
+  "a-videosphere": {
+    "description": "The videosphere primitive plays 360° videos in the background of the scene. Videospheres are a large sphere with the video texture mapped to the inside.",
+    "attributes": {
+      "autoplay": {"value":"true"},
+      "crossOrigin": {"value":"anonymous"},
+      "loop": {"value":"true"},
+      "radius": {"value":"5000"},
+      "segments-height": {"value":"64"},
+      "segments-width": {"value":"64"}
+    }
+  }
+}

@@ -20,7 +20,8 @@
     "atom": ">=1.0.0 <2.0.0"
   },
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "update": "node ./scripts/update.js"
   },
   "devDependencies": {
     "eslint": "^4.11.0",
@@ -28,7 +29,8 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "eslint-plugin-standard": "^3.0.1",
+    "request": "^2.83.0"
   },
   "eslintConfig": {
     "extends": "standard",
@@ -45,9 +47,6 @@
     "semver": "^5.4.1"
   },
   "atomTestRunner": "./tests/runner",
-  "activationHooks": [
-    "core:loaded-shell-environment"
-  ],
   "consumedServices": {
     "status-bar": {
       "versions": {
@@ -62,29 +61,56 @@
       }
     }
   },
+  "activationHooks": [
+    "core:loaded-shell-environment"
+  ],
   "configSchema": {
     "project": {
       "type": "object",
       "order": 1,
       "title": "A-Frame project configuration",
       "properties": {
-        "versionNotify": {
-          "title": "Notify for newer version of A-Frame",
-          "description": "Show notification when there is newer version of A-Frame available for update.",
+        "checkPackageJson": {
+          "title": "Check A-Frame dependency in package.json",
+          "description": "Checks A-Frame dependency in projects package.json, id present uses that dependency version to generate autocomplet suggestions and documentation URL's",
           "type": "boolean",
-          "default": false
+          "default": true,
+          "order": 1
         },
         "versionWarning": {
           "title": "Warn if project uses EOL version of A-Frame",
           "description": "Show warning if project depends on End-of-life A-Frame version",
           "type": "boolean",
-          "default": true
+          "default": true,
+          "order": 2
         },
-        "ignorePackageJson": {
-          "title": "Ignore package.json",
-          "description": "Ignore A-Frame dependency in projects package.json and use defaults instead",
+        "versionNotify": {
+          "title": "Notify for newer version of A-Frame",
+          "description": "Show notification when there is newer version of A-Frame available for update.",
           "type": "boolean",
-          "default": false
+          "default": false,
+          "order": 3
+        },
+        "defaultAframeVersion": {
+          "title": "Default A-Frame version",
+          "description": "Set Default A-Frame version used when not watching package.json or project has no dependency in package.json.",
+          "type": "string",
+          "default": "0.7.1",
+          "order": 4
+        },
+        "attributeDefaults": {
+          "title": "Automatically Set Attribute Default value",
+          "description": "Automatically set value for attribute or get default value from mapped component property.",
+          "type": "boolean",
+          "default": true,
+          "order": 5
+        },
+        "componentDefaults": {
+          "title": "Automatically Set Component Defaults",
+          "description": "Automatically insert all component properties with defaults",
+          "type": "boolean",
+          "default": false,
+          "order": 6
         }
       }
     },
@@ -110,35 +136,47 @@
         "atomMinVer": {
           "title": "Minimum Atom version",
           "type": "string",
-          "default": "1.14.0"
+          "default": "1.14.0",
+          "order": 1
+        },
+        "docsBaseURL": {
+          "title": "Documentation base url",
+          "description": "Documentation base url used to generate links. You can set that also to localhost when working on A-Frame documentation",
+          "type": "string",
+          "default": "https://aframe.io/docs",
+          "order": 2
+        },
+        "website": {
+          "title": "A-Frame website",
+          "description": "You can set that also to localhost when working on A-Frame site",
+          "type": "string",
+          "default": "https://aframe.io",
+          "order": 3
+        },
+        "github": {
+          "title": "A-Frame Github",
+          "description": "You can set that also to your own fork",
+          "type": "string",
+          "default": "https://github.com/aframevr/aframe",
+          "order": 4
+        },
+        "npmapi": {
+          "title": "NPM API uri for A-Frame",
+          "description": "NPM API identifier from where atom-aframe fetches versions",
+          "type": "string",
+          "default": "https://registry.npmjs.org/aframe",
+          "order": 5
         },
         "deprecatedConf": {
           "title": "Deprecated configuration options",
           "type": "array",
           "default": [
-            "aframeVersion"
+            "global"
           ],
           "items": {
             "type": "string"
-          }
-        },
-        "aframeDocsBaseURL": {
-          "title": "Documentation base url",
-          "description": "Documentation base url used to generate links. You can set that also to localhost when working on A-Frame documentation",
-          "type": "string",
-          "default": "https://aframe.io/docs"
-        },
-        "aframeWebsite": {
-          "title": "A-Frame website",
-          "description": "You can set that also to localhost when working on A-Frame site",
-          "type": "string",
-          "default": "https://aframe.io"
-        },
-        "npmAPIURI": {
-          "title": "NPM API uri for A-Frame",
-          "description": "NPM API identifier from where atom-aframe fetches versions",
-          "type": "string",
-          "default": "https://registry.npmjs.org/aframe"
+          },
+          "order": 6
         }
       }
     }
