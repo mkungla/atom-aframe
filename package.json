@@ -3,7 +3,7 @@
   "productName": "A-Frame",
   "description": "Atom A-Frame Support",
   "main": "./src/index",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "license": "MIT",
   "keywords": [
     "aframe",
