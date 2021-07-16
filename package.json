@@ -93,7 +93,7 @@
           "title": "Default A-Frame version",
           "description": "Set Default A-Frame version used when not watching package.json or project has no dependency in package.json.",
           "type": "string",
-          "default": "0.7.1",
+          "default": "1.2.0",
           "order": 4
         },
         "attributeDefaults": {

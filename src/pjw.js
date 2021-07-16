@@ -56,7 +56,6 @@ class PJW {
               this.semver = c.devDependencies.aframe
               this.devDependencies = true
             }
-
             if (this.semver) {
               this.version = semver.valid(this.semver) ? this.semver : null
               resolve()
@@ -78,7 +77,7 @@ class PJW {
   }
 
   /**
-   * listen package.jsone
+   * listen package.json
    */
   listen (cp) {
     if (!this.subscriptions) {
