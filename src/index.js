@@ -1,8 +1,8 @@
 'use babel'
 
-import {Session} from './session'
-import {WorkspaceCommands} from './commands'
-import {Activator} from './activator'
+import { Session } from './session'
+import { WorkspaceCommands } from './commands'
+import { Activator } from './activator'
 import Validator from './validator'
 
 export default {
@@ -16,10 +16,12 @@ export default {
    * @param  {Object} state from last package serialization
    */
   activate () {
-    if (!Validator.validate()) { return }
+    if (!Validator.validate()) {
+      return
+    }
     this.session = new Session(/* state */)
     this.commandsLoaded = false
-    this.activator = new Activator((cmd) => {
+    this.activator = new Activator(cmd => {
       const initCommnds = !this.commandsLoaded
       this.loadCommands()
       // run only command

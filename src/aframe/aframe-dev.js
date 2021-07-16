@@ -1,7 +1,7 @@
 'use babel'
 
 import semver from 'semver'
-import {Emitter} from 'atom'
+import { Emitter } from 'atom'
 import versions from '../../data/versions.json'
 
 export class AframeDev {
@@ -17,6 +17,7 @@ export class AframeDev {
     this.hasDocs = null
     this.setVersion(atom.config.get('atom-aframe.project.defaultAframeVersion'))
   }
+
   /**
    * Set current project A-Frame version and docs version
    *
@@ -26,13 +27,14 @@ export class AframeDev {
   setVersion (ver, sver) {
     this.semver = sver
     this.parseVersion(ver, sver)
-    if (versions.hasOwnProperty(this.version)) {
+    if (Object.prototype.hasOwnProperty.call(versions, this.version)) {
       this.description = versions[this.version].description
       this.docsVer = versions[this.version].docsVer
       this.release = versions[this.version].release
     }
     this.emitter.emit('aframe-version-changed', this.version)
   }
+
   /**
    * Call provided callback when verison has been changed
    *
@@ -41,12 +43,14 @@ export class AframeDev {
   onVersionChanged (cb) {
     this.emitter.on('aframe-version-changed', cb)
   }
+
   /**
    * dispose emitter
    */
   dispose () {
     this.emitter.dispose()
   }
+
   /**
    * Get current documentation version
    *
@@ -55,6 +59,7 @@ export class AframeDev {
   getDocVersion () {
     return this.docsVer
   }
+
   /**
    * Currently returns release date infor, but should return release notes
    *
@@ -63,6 +68,7 @@ export class AframeDev {
   getMessage () {
     return this.description
   }
+
   /**
    * Parse current version
    *
@@ -76,8 +82,8 @@ export class AframeDev {
     }
     const r = semver.validRange(sver)
     if (r) {
-      let vers = []
-      for (let v in versions) {
+      const vers = []
+      for (const v in versions) {
         vers.push(v)
       }
       this.version = semver.maxSatisfying(vers, r)

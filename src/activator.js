@@ -1,13 +1,11 @@
 'use babel'
 
-import {CompositeDisposable} from 'atom'
-import {workspaceCommandNames} from './commands'
-import {PJW} from './pjw'
+import { CompositeDisposable } from 'atom'
+import { workspaceCommandNames } from './commands'
+import { PJW } from './pjw'
 
 // Extra grammars which should actiate atom-aframe
-const extraGrammars = [
-  'text.html.basic'
-]
+const extraGrammars = ['text.html.basic']
 
 class Activator {
   /**
@@ -25,9 +23,12 @@ class Activator {
     this.validGrammar = false
     this.isActivated = false
     this.dependsOnAframe = false
-    this.loaded = atom.packages &&
+    this.loaded =
+      atom.packages &&
       atom.packages.triggeredActivationHooks &&
-      atom.packages.triggeredActivationHooks.has('core:loaded-shell-environment')
+      atom.packages.triggeredActivationHooks.has(
+        'core:loaded-shell-environment'
+      )
     // Chack package json before setting up subscriptions
     this.checkPJSON().then(() => {
       if (!this.dependsOnAframe) {
@@ -37,6 +38,7 @@ class Activator {
       this.check()
     })
   }
+
   /**
    * dispose activator subscriptions
    */
@@ -51,6 +53,7 @@ class Activator {
     this.loaded = false
     this.isActivated = false
   }
+
   /**
    * Perform initial check on package.json and aframe dependency
    */
@@ -66,33 +69,40 @@ class Activator {
       }
     }
   }
+
   /**
    * Subscribe to workspace commands
    */
   subscribeToCommands () {
     for (const command of workspaceCommandNames) {
-      this.subscriptions.add(atom.commands.add('atom-workspace', command, () => {
-        // this will not activate package fully because of command prop
-        this.activateFn(command)
-      }))
+      this.subscriptions.add(
+        atom.commands.add('atom-workspace', command, () => {
+          // this will not activate package fully because of command prop
+          this.activateFn(command)
+        })
+      )
     }
   }
+
   /**
    * Subscribe to events which should trigger package activation
    */
   subscribeToEvents () {
     // Do not activate package if opened file is not js, html or one of extraGrammars
     // so observe until package is activated
-    this.subscriptions.add(atom.workspace.observeTextEditors((editor) => {
-      if (!editor || !editor.getGrammar()) {
-        return false
-      }
-      const grammar = editor.getGrammar()
-      if (grammar && grammar.scopeName) {
-        this.checkGrammar(grammar.scopeName)
-      }
-    }))
+    this.subscriptions.add(
+      atom.workspace.observeTextEditors(editor => {
+        if (!editor || !editor.getGrammar()) {
+          return false
+        }
+        const grammar = editor.getGrammar()
+        if (grammar && grammar.scopeName) {
+          this.checkGrammar(grammar.scopeName)
+        }
+      })
+    )
   }
+
   /**
    * Check should grammar trigger package activation
    *
@@ -100,11 +110,16 @@ class Activator {
    * @return {[type]}           [description]
    */
   checkGrammar (scopeName) {
-    if (extraGrammars.indexOf(scopeName) !== -1 || (scopeName.startsWith('source.js') && !scopeName.startsWith('source.json'))) {
+    if (
+      extraGrammars.indexOf(scopeName) !== -1 ||
+      (scopeName.startsWith('source.js') &&
+        !scopeName.startsWith('source.json'))
+    ) {
       this.validGrammar = true
       this.check()
     }
   }
+
   /**
    * Check if package should be activated or call one of it's workspace cmmands
    */
@@ -120,4 +135,4 @@ class Activator {
     }
   }
 }
-export {Activator}
+export { Activator }

@@ -27,8 +27,12 @@ export class AutocompleteProvider {
     this.docVersion = null
     this.docsBaseURL = atom.config.get('atom-aframe.devel.docsBaseURL')
     // perhaps observe following 2
-    this.attributeDefaults = atom.config.get('atom-aframe.project.attributeDefaults')
-    this.componentDefaults = atom.config.get('atom-aframe.project.componentDefaults')
+    this.attributeDefaults = atom.config.get(
+      'atom-aframe.project.attributeDefaults'
+    )
+    this.componentDefaults = atom.config.get(
+      'atom-aframe.project.componentDefaults'
+    )
 
     this.currentVerDocs = `${this.docsBaseURL}/master`
     this.completions = {
@@ -81,13 +85,18 @@ export class AutocompleteProvider {
    * @param  The Suggestion Request's Options Object
    * @return {Boolean}
    */
-  isTagOrPrimitive ({prefix, scopeDescriptor, bufferPosition, editor}) {
-    if (prefix.trim() && (prefix.indexOf('<') === -1)) {
+  isTagOrPrimitive ({ prefix, scopeDescriptor, bufferPosition, editor }) {
+    if (prefix.trim() && prefix.indexOf('<') === -1) {
       return this.hasTagScope(scopeDescriptor.getScopesArray())
     }
-    prefix = editor.getTextInRange([[bufferPosition.row, bufferPosition.column - 1], bufferPosition])
+    prefix = editor.getTextInRange([
+      [bufferPosition.row, bufferPosition.column - 1],
+      bufferPosition
+    ])
     const scopes = scopeDescriptor.getScopesArray()
-    return (prefix === '<') && (scopes[0] === 'text.html.basic') && (scopes.length === 1)
+    return (
+      prefix === '<' && scopes[0] === 'text.html.basic' && scopes.length === 1
+    )
   }
 
   /**
@@ -97,8 +106,10 @@ export class AutocompleteProvider {
    * @return {Boolean}
    */
   hasTagScope (scopes) {
-    for (let scope of Array.from(scopes)) {
-      if (scope.startsWith('meta.tag.') && scope.endsWith('.html')) { return true }
+    for (const scope of Array.from(scopes)) {
+      if (scope.startsWith('meta.tag.') && scope.endsWith('.html')) {
+        return true
+      }
     }
     return false
   }
@@ -109,12 +120,16 @@ export class AutocompleteProvider {
    * @param  {Object} The Suggestion Request's Options Object
    * @return {Object} completions
    */
-  getTagCompletions ({prefix, editor, bufferPosition}) {
+  getTagCompletions ({ prefix, editor, bufferPosition }) {
     // autocomplete-plus's default prefix setting does not capture <. Manually check for it.
-    const ignorePrefix = editor.getTextInRange([[bufferPosition.row, bufferPosition.column - 1], bufferPosition]) === '<'
+    const ignorePrefix =
+      editor.getTextInRange([
+        [bufferPosition.row, bufferPosition.column - 1],
+        bufferPosition
+      ]) === '<'
 
     const completions = []
-    for (let tag in this.completions.tags) {
+    for (const tag in this.completions.tags) {
       const conf = this.completions.tags[tag]
       if (ignorePrefix || fce(tag, prefix)) {
         completions.push(this.buildTagCompletion(tag, conf))
@@ -122,6 +137,7 @@ export class AutocompleteProvider {
     }
     return completions
   }
+
   /**
    * Build Tag Completion entry
    *
@@ -134,7 +150,8 @@ export class AutocompleteProvider {
       text: tag,
       type: 'tag',
       leftLabel: 'A-Frame',
-      description: conf.description != null ? conf.description : `primitive <${tag}>`,
+      description:
+        conf.description != null ? conf.description : `primitive <${tag}>`,
       descriptionMoreURL: conf.url != null ? conf.url : this.getTagDocsURL(tag)
     }
   }
@@ -185,7 +202,7 @@ export class AutocompleteProvider {
    * @param  {Object} editor
    * @param  {Object} suggestion
    */
-  onDidInsertSuggestion ({editor, suggestion}) {
+  onDidInsertSuggestion ({ editor, suggestion }) {
     if (suggestion.type === 'attribute' || suggestion.type === 'component') {
       return setTimeout(this.triggerAutocomplete.bind(this, editor), 1)
     }
@@ -197,7 +214,11 @@ export class AutocompleteProvider {
    * @param  {Object} editor
    */
   triggerAutocomplete (editor) {
-    return atom.commands.dispatch(atom.views.getView(editor), 'autocomplete-plus:activate', {activatedManually: false})
+    return atom.commands.dispatch(
+      atom.views.getView(editor),
+      'autocomplete-plus:activate',
+      { activatedManually: false }
+    )
   }
 
   /**
@@ -207,10 +228,15 @@ export class AutocompleteProvider {
    * @param  {Object} bufferPosition The position of the cursor
    */
   getPreviousTag (editor, bufferPosition) {
-    let {row} = bufferPosition
+    let { row } = bufferPosition
     while (row >= 0) {
-      const tag = __guard__(tagPattern.exec(editor.lineTextForBufferRow(row)), x => x[1])
-      if (tag) { return tag }
+      const tag = __guard__(
+        tagPattern.exec(editor.lineTextForBufferRow(row)),
+        x => x[1]
+      )
+      if (tag) {
+        return tag
+      }
       row--
     }
   }
@@ -223,18 +249,31 @@ export class AutocompleteProvider {
    * @param  {Object}  editor          The current TextEditor
    * @return {Boolean}                 If bufferPosition is at attr value
    */
-  isComponentOrAttributeValueStart ({scopeDescriptor, bufferPosition, editor}) {
+  isComponentOrAttributeValueStart ({
+    scopeDescriptor,
+    bufferPosition,
+    editor
+  }) {
     const scopes = scopeDescriptor.getScopesArray()
-    const previousBufferPosition = [bufferPosition.row, Math.max(0, bufferPosition.column - 1)]
-    const previousScopes = editor.scopeDescriptorForBufferPosition(previousBufferPosition)
+    const previousBufferPosition = [
+      bufferPosition.row,
+      Math.max(0, bufferPosition.column - 1)
+    ]
+    const previousScopes = editor.scopeDescriptorForBufferPosition(
+      previousBufferPosition
+    )
     const previousScopesArray = previousScopes.getScopesArray()
-    return this.hasStringScope(scopes) && this.hasStringScope(previousScopesArray) &&
-      (previousScopesArray.indexOf('punctuation.definition.string.end.html') === -1) &&
+    return (
+      this.hasStringScope(scopes) &&
+      this.hasStringScope(previousScopesArray) &&
+      previousScopesArray.indexOf('punctuation.definition.string.end.html') ===
+        -1 &&
       this.hasTagScope(scopes) &&
-      (this.getComponentOrAttribute(editor, bufferPosition) != null)
+      this.getComponentOrAttribute(editor, bufferPosition) != null
+    )
   }
 
-  getComponentOrAttributeValueCompletions ({prefix, editor, bufferPosition}) {
+  getComponentOrAttributeValueCompletions ({ prefix, editor, bufferPosition }) {
     const completions = []
     return completions
   }
@@ -249,17 +288,28 @@ export class AutocompleteProvider {
     // Remove everything until the opening quote (if we're in a string)
     let quoteIndex = bufferPosition.column - 1 // Don't start at the end of the line
     while (quoteIndex) {
-      const scopes = editor.scopeDescriptorForBufferPosition([bufferPosition.row, quoteIndex])
+      const scopes = editor.scopeDescriptorForBufferPosition([
+        bufferPosition.row,
+        quoteIndex
+      ])
       const scopesArray = scopes.getScopesArray()
-      if (!this.hasStringScope(scopesArray) ||
-        (scopesArray.indexOf('punctuation.definition.string.begin.html') !== -1)) {
+      if (
+        !this.hasStringScope(scopesArray) ||
+        scopesArray.indexOf('punctuation.definition.string.begin.html') !== -1
+      ) {
         break
       }
       quoteIndex--
     }
-    return __guard__(attributePattern.exec(editor.getTextInRange([
-      [bufferPosition.row, 0], [bufferPosition.row, quoteIndex]]
-    )), x => x[1])
+    return __guard__(
+      attributePattern.exec(
+        editor.getTextInRange([
+          [bufferPosition.row, 0],
+          [bufferPosition.row, quoteIndex]
+        ])
+      ),
+      x => x[1]
+    )
   }
 
   /**
@@ -269,8 +319,10 @@ export class AutocompleteProvider {
    * @return {Boolean}
    */
   hasStringScope (scopes) {
-    return (scopes.indexOf('string.quoted.double.html') !== -1) ||
-      (scopes.indexOf('string.quoted.single.html') !== -1)
+    return (
+      scopes.indexOf('string.quoted.double.html') !== -1 ||
+      scopes.indexOf('string.quoted.single.html') !== -1
+    )
   }
 
   /**
@@ -282,22 +334,42 @@ export class AutocompleteProvider {
    * @param  {Object}  editor          [description]
    * @return {Boolean}                 [description]
    */
-  isComponentOrAttributeStart ({prefix, scopeDescriptor, bufferPosition, editor}) {
+  isComponentOrAttributeStart ({
+    prefix,
+    scopeDescriptor,
+    bufferPosition,
+    editor
+  }) {
     const scopes = scopeDescriptor.getScopesArray()
-    if (!this.getComponentOrAttribute(editor, bufferPosition) && prefix && !prefix.trim()) {
+    if (
+      !this.getComponentOrAttribute(editor, bufferPosition) &&
+      prefix &&
+      !prefix.trim()
+    ) {
       return this.hasTagScope(scopes)
     }
 
-    const previousBufferPosition = [bufferPosition.row, Math.max(0, bufferPosition.column - 1)]
-    const previousScopes = editor.scopeDescriptorForBufferPosition(previousBufferPosition)
+    const previousBufferPosition = [
+      bufferPosition.row,
+      Math.max(0, bufferPosition.column - 1)
+    ]
+    const previousScopes = editor.scopeDescriptorForBufferPosition(
+      previousBufferPosition
+    )
     const previousScopesArray = previousScopes.getScopesArray()
 
-    if (previousScopesArray.indexOf('entity.other.attribute-name.html') !== -1) {
+    if (
+      previousScopesArray.indexOf('entity.other.attribute-name.html') !== -1
+    ) {
       return true
     }
-    if (!this.hasTagScope(scopes)) { return false }
-    return (scopes.indexOf('punctuation.definition.tag.end.html') !== -1) &&
-      (previousScopesArray.indexOf('punctuation.definition.tag.end.html') === -1)
+    if (!this.hasTagScope(scopes)) {
+      return false
+    }
+    return (
+      scopes.indexOf('punctuation.definition.tag.end.html') !== -1 &&
+      previousScopesArray.indexOf('punctuation.definition.tag.end.html') === -1
+    )
   }
 
   /**
@@ -308,23 +380,40 @@ export class AutocompleteProvider {
    * @param  {Object} bufferPosition
    * @return {Object}                completions
    */
-  getComponentOrAttributeNameCompletions ({prefix, editor, bufferPosition}) {
+  getComponentOrAttributeNameCompletions ({ prefix, editor, bufferPosition }) {
     const completions = []
     const tag = this.getPreviousTag(editor, bufferPosition)
     const tagAttributes = this.getTagAttributes(tag)
 
     for (const attribute of Object.keys(tagAttributes)) {
       if (!prefix.trim() || fce(attribute, prefix)) {
-        completions.push(this.buildMappingAttributeCompletion(attribute, tag, this.completions.attributes[attribute], tagAttributes[attribute]))
+        completions.push(
+          this.buildMappingAttributeCompletion(
+            attribute,
+            tag,
+            this.completions.attributes[attribute],
+            tagAttributes[attribute]
+          )
+        )
       }
     }
     for (const component of Object.keys(this.completions.components)) {
       if (!prefix.trim() || fce(component, prefix)) {
-        if ((tag !== 'a-scene' && this.completions.components[component].sceneOnly) ||
-        (tag === 'a-scene' && !this.completions.components[component].sceneOnly)) {
+        if (
+          (tag !== 'a-scene' &&
+            this.completions.components[component].sceneOnly) ||
+          (tag === 'a-scene' &&
+            !this.completions.components[component].sceneOnly)
+        ) {
           continue
         }
-        completions.push(this.buildComponentCompletion(component, tag, this.completions.components[component]))
+        completions.push(
+          this.buildComponentCompletion(
+            component,
+            tag,
+            this.completions.components[component]
+          )
+        )
       }
     }
     return completions
@@ -351,7 +440,12 @@ export class AutocompleteProvider {
           description = options.mapping
         }
         url = this.getComponentDocsURL(cp[0])
-        if (this.completions.components.hasOwnProperty(cp[0])) {
+        if (
+          Object.prototype.hasOwnProperty.call(
+            this.completions.components,
+            cp[0]
+          )
+        ) {
           const x = this.completions.components[cp[0]].properties[cp[1]]
           value = x || ''
         } else {
@@ -359,11 +453,17 @@ export class AutocompleteProvider {
         }
       } else {
         description = `<${tag}> ${attribute}`
-        url = (options != null && options.url != null) ? options.url : this.getTagDocsURL(tag)
+        url =
+          options != null && options.url != null
+            ? options.url
+            : this.getTagDocsURL(tag)
       }
     }
     return {
-      snippet: (options != null ? options.type : undefined) === 'flag' ? attribute : `${attribute}="${value}$1"$0`,
+      snippet:
+        (options != null ? options.type : undefined) === 'flag'
+          ? attribute
+          : `${attribute}="${value}$1"$0`,
       displayText: attribute,
       type: 'attribute',
       rightLabel: value,
@@ -383,7 +483,10 @@ export class AutocompleteProvider {
    */
   buildComponentCompletion (component, tag, options) {
     return {
-      snippet: options.type === 'flag' ? component : `${component}="${this.getComponentValue(options)}$1"$0`,
+      snippet:
+        options.type === 'flag'
+          ? component
+          : `${component}="${this.getComponentValue(options)}$1"$0`,
       displayText: component,
       type: 'component',
       leftLabel: 'A-Frame',
@@ -392,6 +495,7 @@ export class AutocompleteProvider {
       descriptionMoreURL: this.getComponentDocsURL(component)
     }
   }
+
   /**
    * Get Tag Attributes
    *
@@ -399,8 +503,13 @@ export class AutocompleteProvider {
    * @return {Object} attributes
    */
   getTagAttributes (tag) {
-    return (this.completions.tags[tag] != null ? this.completions.tags[tag].attributes : undefined) != null
-      ? (this.completions.tags[tag] != null ? this.completions.tags[tag].attributes : undefined) : []
+    return (this.completions.tags[tag] != null
+      ? this.completions.tags[tag].attributes
+      : undefined) != null
+      ? this.completions.tags[tag] != null
+        ? this.completions.tags[tag].attributes
+        : undefined
+      : []
   }
 
   /**
@@ -415,8 +524,8 @@ export class AutocompleteProvider {
     }
     if (this.componentDefaults) {
       let val = ''
-      for (var p in component.properties) {
-        if (component.properties.hasOwnProperty(p)) {
+      for (const p in component.properties) {
+        if (Object.prototype.hasOwnProperty.call(component.properties, p)) {
           val += p + ':' + component.properties[p] + ';'
         }
       }
@@ -427,5 +536,7 @@ export class AutocompleteProvider {
 }
 
 function __guard__ (value, transform) {
-  return (typeof value !== 'undefined' && value !== null) ? transform(value) : undefined
+  return typeof value !== 'undefined' && value !== null
+    ? transform(value)
+    : undefined
 }

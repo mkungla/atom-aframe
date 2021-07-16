@@ -1,6 +1,6 @@
 'use babel'
 
-import {Disposable} from 'atom'
+import { Disposable } from 'atom'
 
 export class AframeStatusBar {
   /**
@@ -15,12 +15,14 @@ export class AframeStatusBar {
     this.elVersion = null
     this.setup()
   }
+
   /**
    * Set StatusBar when consumedServices are setup
    */
   setStatusBar (sb) {
     this.sb = sb
   }
+
   /**
    * Create statusbar node
    */
@@ -28,9 +30,9 @@ export class AframeStatusBar {
     this.el = document.createElement('aframe-status-block')
     this.el.classList.add('atom-aframe-status', 'inline-block')
 
-    let elLogo = document.createElement('div')
+    const elLogo = document.createElement('div')
     elLogo.classList.add('atom-aframe-status-logo', 'inline-block')
-    let elLogoImg = document.createElement('img')
+    const elLogoImg = document.createElement('img')
     elLogoImg.setAttribute('src', 'atom://atom-aframe/res/images/favicon.png')
     elLogo.appendChild(elLogoImg)
     this.el.appendChild(elLogo)
@@ -39,15 +41,20 @@ export class AframeStatusBar {
     this.elVersion.classList.add('atom-aframe-version', 'inline-block')
     this.el.appendChild(this.elVersion)
     this.el.addEventListener('click', this.onClick)
-    this.clickSubscription = new Disposable(() => this.el.removeEventListener('click', this.onClick))
+    this.clickSubscription = new Disposable(() =>
+      this.el.removeEventListener('click', this.onClick)
+    )
   }
+
   /**
    * Attach statusbar
    */
   attach () {
-    if (!this.sb || !this.el) { return }
+    if (!this.sb || !this.el) {
+      return
+    }
     this.el.style.display = 'none'
-    this.tile = this.sb.addRightTile({priority: 500, item: this.el})
+    this.tile = this.sb.addRightTile({ priority: 500, item: this.el })
   }
 
   /**
@@ -68,7 +75,7 @@ export class AframeStatusBar {
       if (this.tooltip) {
         this.tooltip.dispose()
       }
-      this.tooltip = atom.tooltips.add(this.el, {title: msg})
+      this.tooltip = atom.tooltips.add(this.el, { title: msg })
     })
   }
 
@@ -87,6 +94,7 @@ export class AframeStatusBar {
       this.tooltip.dispose()
     }
   }
+
   /**
    * Statusbar onClick
    *
@@ -94,6 +102,9 @@ export class AframeStatusBar {
    */
   onClick (e) {
     e.preventDefault()
-    atom.commands.dispatch(atom.views.getView(atom.workspace), 'atom-aframe:open-settings')
+    atom.commands.dispatch(
+      atom.views.getView(atom.workspace),
+      'atom-aframe:open-settings'
+    )
   }
 }

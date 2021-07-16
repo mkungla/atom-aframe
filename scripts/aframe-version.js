@@ -7,6 +7,7 @@ exports.AframeVersion = class {
     this.hasDocs = false
     this.setRelease(release)
   }
+
   setRelease (release) {
     const rd = new Date(release)
     if (Object.prototype.toString.call(rd) !== '[object Date]' || isNaN(rd)) {
@@ -17,6 +18,7 @@ exports.AframeVersion = class {
       this.description = 'v' + this.version + ' released ' + rd.toDateString()
     }
   }
+
   setDocsVer (ver) {
     this.docsVer = ver
   }

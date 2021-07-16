@@ -1,10 +1,10 @@
 'use babel'
 
-import {CompositeDisposable} from 'atom'
-import {PJW} from './pjw'
-import {AframeDev} from './aframe/aframe-dev'
-import {AutocompleteProvider} from './autocomplete/provider'
-import {AframeStatusBar} from './status-bar/aframe-status-bar'
+import { CompositeDisposable } from 'atom'
+import { PJW } from './pjw'
+import { AframeDev } from './aframe/aframe-dev'
+import { AutocompleteProvider } from './autocomplete/provider'
+import { AframeStatusBar } from './status-bar/aframe-status-bar'
 
 class Session {
   /**
@@ -61,16 +61,21 @@ class Session {
    * Observe package.json for A-Frame dependency
    */
   observePackageJSON () {
-    this.subscribe(atom.config.observe('atom-aframe.project.checkPackageJson', (listen) => {
-      if (listen) {
-        this.pjw.listen((ver, semver) => {
-          this.aframe.setVersion(ver, semver)
-        })
-      } else {
-        this.pjw.stop()
-        this.aframe.setVersion(atom.config.get('atom-aframe.project.defaultAframeVersion'), null)
-      }
-    }))
+    this.subscribe(
+      atom.config.observe('atom-aframe.project.checkPackageJson', listen => {
+        if (listen) {
+          this.pjw.listen((ver, semver) => {
+            this.aframe.setVersion(ver, semver)
+          })
+        } else {
+          this.pjw.stop()
+          this.aframe.setVersion(
+            atom.config.get('atom-aframe.project.defaultAframeVersion'),
+            null
+          )
+        }
+      })
+    )
   }
 
   /**
@@ -79,7 +84,7 @@ class Session {
    * - autocomplete doc version
    */
   observeVersionChanged () {
-    this.aframe.onVersionChanged((ver) => {
+    this.aframe.onVersionChanged(ver => {
       if (this.statusBar) {
         this.statusBar.update(ver, this.aframe.getMessage())
       }
@@ -89,4 +94,4 @@ class Session {
     })
   }
 }
-export {Session}
+export { Session }
